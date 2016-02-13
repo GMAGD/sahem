@@ -15,8 +15,8 @@
 
         {% block css %}
             <!-- Latest compiled and minified CSS -->
-            <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-
+{#            <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">#}
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
             <!-- Your stuff: Third-party css libraries go here -->
 
             <!-- This file store project specific CSS -->
@@ -103,8 +103,8 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
 
             <!-- Latest compiled and minified JavaScript -->
-            <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
-
+{#            <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>#}
+            <script src="{% static 'js/bootstrap.min.js' %}"></script>
             <!-- Your stuff: Third-party javascript libraries go here -->
 
             <!-- place project specific Javascript in this file -->
