@@ -1,13 +1,13 @@
-from subprocess import call
 from os import path
-import hitchpostgres
-import hitchselenium
-import hitchpython
-import hitchserve
-import hitchredis
-import hitchtest
-import hitchsmtp
+from subprocess import call
 
+import hitchpostgres
+import hitchpython
+import hitchredis
+import hitchselenium
+import hitchserve
+import hitchsmtp
+import hitchtest
 
 # Get directory above this file
 PROJECT_DIRECTORY = path.abspath(path.join(path.dirname(__file__), '..'))
@@ -68,12 +68,12 @@ class ExecutionEngine(hitchtest.ExecutionEngine):
             no_libfaketime=True,
         )
 
-#        import hitchcron
-#        self.services['Cron'] = hitchcron.CronService(
-#            run=self.services['Django'].manage("trigger").command,
-#            every=1,
-#            needs=[ self.services['Django'], ],
-#        )
+        #        import hitchcron
+        #        self.services['Cron'] = hitchcron.CronService(
+        #            run=self.services['Django'].manage("trigger").command,
+        #            every=1,
+        #            needs=[ self.services['Django'], ],
+        #        )
 
         self.services.startup(interactive=False)
 

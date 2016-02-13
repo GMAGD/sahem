@@ -85,7 +85,7 @@ Heroku
 ^^^^^^
 
 .. image:: https://www.herokucdn.com/deploy/button.png
-    :target: https://heroku.com/deploy
+:target: https://heroku.com/deploy
 
 See detailed `cookiecutter-django Heroku documentation`_.
 
