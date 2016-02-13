@@ -1,24 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <meta name="viewport" content="width=device-width" content="initial-scale=1">
-    <link rel="stylesheet" href="../../static/css/style1.css" type="text/css">
-    <meta charset="utf-8">
-    <meta title="Social Website">
-    </head>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Social Website{% endblock %}
+{% block content %}
+    <header>
 
-    <body>
-        <header>
-
-            <div id="headerpic">
-               <h1>Ready To change the world ?</h1>
-                <p>Join nonprofits, or ogranise your own event</p>
-                <button>Get started !</button>
-            </div>
-        </header>
-        <nav></nav>
-        <article>
-            bla bla bla
-        </article>
-    </body>
-</html>
+        <div id="headerpic">
+            <h1>Ready To change the world ?</h1>
+            <p>Join nonprofits, or ogranise your own event</p>
+            <button>Get started !</button>
+        </div>
+    </header>
+    <nav></nav>
+    <article>
+        bla bla bla
+    </article>
+{% endblock %}

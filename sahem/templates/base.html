@@ -15,12 +15,14 @@
 
         {% block css %}
             <!-- Latest compiled and minified CSS -->
-{#            <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">#}
+            {#            <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">#}
             <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
             <!-- Your stuff: Third-party css libraries go here -->
 
             <!-- This file store project specific CSS -->
             <link href="{% static 'css/project.css' %}" rel="stylesheet">
+
+            <link rel="stylesheet" href="{% static 'css/style1.css' %}" type="text/css">
         {% endblock %}
 
         {% block angular %}
@@ -76,19 +78,19 @@
             </nav>
         </div>
 
-        <div class="container">
 
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
 
-            {% block content %}
-                <p>Use this document as a way to quick start any new project.</p>
-            {% endblock content %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
 
-        </div> <!-- /container -->
+        {% block content %}
+            <p>Use this document as a way to quick start any new project.</p>
+        {% endblock content %}
+
+
 
         {% block modal %}{% endblock modal %}
 
@@ -103,7 +105,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
 
             <!-- Latest compiled and minified JavaScript -->
-{#            <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>#}
+            {#            <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>#}
             <script src="{% static 'js/bootstrap.min.js' %}"></script>
             <!-- Your stuff: Third-party javascript libraries go here -->
 
