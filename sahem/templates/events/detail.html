@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}{{ event.name }}{% endblock %}
+{% block content %}
+
+
+
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        function initialize() {
+            var mapProp = {
+                center: new google.maps.LatLng({{ event.position.latitude }}, {{ event.position.longitude }}),
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+
+            var myLatLng = {lat: {{ event.position.latitude }}, lng: {{ event.position.longitude }}};
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'hello world'
+            })
+
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+
+
+    <div class="container" id="event-detail">
+        <div class="row">
+
+            <div class="col-sm-8">
+                <h3>Manager : {{ event.owner }}</h3>
+                <h3>{{ event.name }}</h3>
+                <h5>{{ event.start }} --> {{ event.end }}</h5>
+                <p>{{ event.description }}</p>
+
+                <p>Staff : {{ event.get_staff_count }}</p>
+                {% for staff in event.staff.all %}
+                    <p>{{ staff }}</p>
+                {% endfor %}
+
+                <p>Participant : {{ event.get_participant_count }}</p>
+                {% for participant in event.participant.all %}
+                    <p>{{ participant }}</p>
+                {% endfor %}
+
+
+            </div>
+
+
+            <div class="col-sm-4">
+                <div id="googleMap" style="width:500px;height:380px;"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
