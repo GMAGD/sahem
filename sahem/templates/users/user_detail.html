@@ -3,34 +3,41 @@
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
+{% block meta %}
+    {{ block.super }}
+
+    <meta name="description" content="Checkout leatest news, and events you contributed to on Sahem">
+    <meta keywords="Sahem,Charity,Events,organize,updates">
+    <meta name="robots" content="noindex">
+
+{% endblock %}
+
 {% block content %}
-    <div class="container">
-
+<div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12">
-
-                <h2>{{ object.username }}</h2>
-                {% if object.name %}
-                    <p>{{ object.name }}</p>
-                {% endif %}
+            <div class="col-sm-4 col-xs-4 col-md-3 col-lg-3 cards-content">
+                <img src="../../static/images/avatar.jpg" class="img-responsive img-circle img-thumbnail">
+                <h3>{{ request.user }}</h3>
+                <p>This is some text.</p>
+            </div>
+            <div class="col-sm-8 col-xs-8 col-md-8 col-lg-8">
+                <h2>Current</h2>
+                <table class="table table-hover table-bordered table-responsive">
+                    <tbody>
+                    <tr>
+                        <td>icon.png</td>
+                        <td><h3>Bla </h3></td>
+                        <td>20/04/2015</td>
+                    </tr>
+                    <tr>
+                        <td>icon.png</td>
+                        <td><h3>Blabla bla</h3></td>
+                        <td>20/04/2015</td>
+                    </tr>
+                </table>
             </div>
         </div>
 
-        {% if object == request.user %}
-            <!-- Action buttons -->
-            <div class="row">
-
-                <div class="col-sm-12 ">
-                    <a class="btn btn-primary" href="{% url 'users:update' %}">My Info</a>
-                    <a class="btn btn-primary" href="{% url 'account_email' %}">E-Mail</a>
-                    <!-- Your Stuff: Custom user template urls -->
-                </div>
-
-            </div>
-            <!-- End Action buttons -->
-        {% endif %}
-
-
-    </div>
+</div>
 {% endblock content %}
 

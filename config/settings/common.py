@@ -101,25 +101,25 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 # Local Database
-# DATABASES = {
-#     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-#     'default': env.db("DATABASE_URL", default="postgres:///sahem"),
-# }
-# DATABASES['default']['ATOMIC_REQUESTS'] = True
-#
-#
-
-# Hosted Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ellxfukx',
-        'USER': 'ellxfukx',
-        'PASSWORD': 'L6HbiGy72_wEHnj6-81YL8N-LfwI5ItB',
-        'HOST': 'horton.elephantsql.com',
-        'PORT': '5432',
-    }
+    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    'default': env.db("DATABASE_URL", default="postgres:///sahem"),
 }
+DATABASES['default']['ATOMIC_REQUESTS'] = True
+
+
+
+# # Hosted Database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'ellxfukx',
+#         'USER': 'ellxfukx',
+#         'PASSWORD': 'L6HbiGy72_wEHnj6-81YL8N-LfwI5ItB',
+#         'HOST': 'horton.elephantsql.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # GENERAL CONFIGURATION

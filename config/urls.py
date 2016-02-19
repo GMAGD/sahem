@@ -22,6 +22,11 @@ urlpatterns = [
                   # Your stuff: custom urls includes go here
                   url(r'^events/', include('sahem.events.urls', namespace='events')),
 
+                  # Robots.txt file
+                  #url(r'^robots\.txt$', direct_to_template,
+                  # {'template': 'robots.txt', 'mimetype': 'text/plain'}),
+
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
