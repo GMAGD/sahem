@@ -11,6 +11,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
                   url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name="home"),
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
+                  url(r'^privacy\-policy/$', TemplateView.as_view(template_name='pages/privacy_policy.html'), name="privacy_policy"),
 
                   # Django Admin, use {% url 'admin:index' %}
                   url(settings.ADMIN_URL, include(admin.site.urls)),
@@ -23,9 +24,8 @@ urlpatterns = [
                   url(r'^events/', include('sahem.events.urls', namespace='events')),
 
                   # Robots.txt file
-                  #url(r'^robots\.txt$', direct_to_template,
+                  # url(r'^robots\.txt$', direct_to_template,
                   # {'template': 'robots.txt', 'mimetype': 'text/plain'}),
-
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

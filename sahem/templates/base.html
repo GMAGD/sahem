@@ -26,7 +26,6 @@
 
         <!-- This file store project specific CSS -->
         <link href="{% static 'css/project.css' %}" rel="stylesheet">
-
     {% endblock %}
 
     {% block angular %}
@@ -38,6 +37,7 @@
 <body>
 
 <!-- Old Nav
+{#
 <nav class=" navbar navbar-default navbar-static-top" role="navigation">
     <a class="navbar-brand" href="#">Sahem</a>
 
@@ -74,12 +74,13 @@
         </li>
     </ul>
 </nav>
+ #}
 -->
 
 <!--Navigation start-->
 {% block navbar %}
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
+    <nav class="navbar navbar-default main-nav" role="navigation">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse"
                         data-target="#navbar-collapse">
@@ -136,16 +137,12 @@
     </nav>
 {% endblock %}
 <!--Navigation Ends-->
-
 <main>
     {% if messages %}
         {% for message in messages %}
             <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
         {% endfor %}
     {% endif %}
-
-
-
     {% block content %}
     {% endblock content %}
     <footer class="container-fluid">
@@ -165,7 +162,7 @@
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Terms of service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href={% url 'privacy_policy' %}>Privacy Policy</a></li>
                 </ul>
             </div>
             <div class="col-sm-3">
@@ -183,6 +180,8 @@
                 <div class="addthis_horizontal_follow_toolbox"></div>
             </div>
         </div>
+        <hr>
+        <p>&lt;/&gt; With <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> by <a href="#">D3vSt0rm</a></p>
     </footer>
 </main>
 

@@ -37,16 +37,23 @@
 }
 
 /* Abdeljalil CSS*/
+html {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight: bold;
+}
+
+
 body {
   margin: 0px;
   padding: 0px;
-  font-family: Roboto;
   background-color: #f0f0f0;
-  font-size: 120%;
 }
 
 #headerTop {
-  padding-top: 10%;
+  padding-top: 8%;
   padding-bottom: 12%;
   text-align: center;
   color: #e9fa9b;
@@ -61,18 +68,18 @@ body {
   background-attachment: fixed;
   display: block;
   margin: 0%;
-
 }
 
-.index-sections{
-  padding-top:3%;
+.index-sections {
+  padding-top: 3%;
 }
+
 .index-sections h1 {
   color: #ccf21c;
   font-size: 290%;
-  font-weight:bold;
+  font-weight: bold;
   text-align: center;
-  padding-bottom:1%;
+  padding-bottom: 1%;
 }
 
 .index-sections button {
@@ -85,7 +92,7 @@ body {
   padding-bottom: 0.5%;
 }
 
-#how-it-works, #who-we-are{
+#how-it-works, #who-we-are {
   font-size: 110%;
 }
 
@@ -117,30 +124,43 @@ main {
 
 .main-nav {
   background-color: #ccf21c;
+  margin-bottom: 0%;
 }
 
-footer{
-  margin-top:2%;
+footer {
+  margin-top: 2%;
   background-color: #e9fa9b;
   font-size: 120%;
+  border-top: 1px solid lightgrey;
+
 }
-.footer-links{
+
+.footer-links {
   list-style: none;
 
 }
 
-footer h4{
-  font-weight:bold;
-  text-align: left;
-}
-footer li{
+footer h4 {
+  font-weight: bold;
   text-align: left;
 }
 
-#join-us-banner{
+footer li {
+  text-align: left;
+}
+
+#join-us-banner {
   background-color: #ccf21c;
   padding: 1%;
-  margin-top:2%;
-  maargin-bottom:2%;
+  margin-top: 2%;
+  maargin-bottom: 2%;
   font-size: 150%;
+}
+
+ul li {
+  text-align: left;
+}
+
+.free-box{
+  margin: 1%;
 }

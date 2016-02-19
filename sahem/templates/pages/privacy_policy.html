@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Privacy Policy | Sahem{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="title" content="Privacy Policy | Sahem">
+    <meta name="description" content="Privacy policy page for Sahem">
+    <meta keywords="Sahem,Charity,Events,organize,updates">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Privacy Policy of Sahem</h1>
+        <div class="row">
+            <h2>
+                <small>Personal Data collected for the following purposes and using the following services:</small>
+            </h2>
+            <hr>
+            <div class="col-sm-5 free-box">
+                <dl>
+                    <dt class="text-info"><span class="glyphicon glyphicon-user small"></span> Access to third party
+                        services' accounts
+                    </dt>
+                    <dt>Access to the Facebook account</dt>
+                    <dd>Permissions: Email, Name</dd>
+                    <dt>Access to the Google+ account</dt>
+                    <dd>Personal Data: Name, email address, location</dd>
+                </dl>
+            </div>
+            <div class="col-sm-5 free-box">
+                <dt class="text-info"><span class="glyphicon glyphicon-stats small"></span> Analytics</dt>
+                <dt>Google Analytics, Google AdWords</dt>
+                <dd>Personal Data: Cookies and Usage data</dd>
+            </div>
+            <div class="col-sm-5 free-box">
+                <dt class="text-info"><span class="glyphicon glyphicon-save-file small"></span> Registration and
+                    authentication
+                </dt>
+                <dt>Direct registration</dt>
+                <dd>Personal Data: email address and password</dd>
+                <dt>By social-media accounts</dt>
+                <dd>Personal Data: email address and name</dd>
+            </div>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="free-box col-sm-9">
+                <h4>Further information about Personal Data</h4>
+                <p class="text-left">We don't sell or rent Users' Data to any third parties for any purpose.
+                    The only uses of Data are those highlighted in this policy.
+                    Users are the only owner of their Data and can request modification or deletion at any time.</p>
+            </div>
+            <!--
+            {#Todo: Fill that later #}
+
+            <div class="col-sm-9 free-box">
+                <h4></h4>
+                <p></p>
+            </div>
+             -->
+        </div>
+    </div>
+{% endblock %}
