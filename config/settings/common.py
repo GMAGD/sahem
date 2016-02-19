@@ -109,7 +109,7 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 
-# # Hosted Database
+# Hosted Database
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
