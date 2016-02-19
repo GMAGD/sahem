@@ -148,13 +148,10 @@
     <footer class="container-fluid">
         <div class="row">
             <div class="col-sm-3 pull-left">
-                <h4>Who</h4>
-                <p class="text-left">
-                    <mark>About us</mark>
-                    consectetur adipisicing elit. Delectus eius fugiat labore mollitia
-                    recusandae? A amet autem cum debitis delectus est incidunt, iure magnam maxime omnis porro quae
-                    reiciendis voluptatem.
-                </p>
+                <h5 id="cookieFooter">Cookie policy</h5>
+                <p class="text-left">We are using cookies to give you the best possible experience.
+                    By continuing to browse the site you are agreeing to our use of cookies. <a href="terms#cookies">Find
+                        out more here.</a></p>
             </div>
             <div class="col-sm-3 pull-left">
                 <ul class="footer-links">
@@ -175,13 +172,19 @@
                 </ul>
             </div>
             <div class="col-sm-3">
-                <h4>Follow Us</h4>
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_horizontal_follow_toolbox"></div>
+                <ul class="footer-links">
+                    <li><h4>Follow Us</h4></li>
+                    <li><a href="#">Google Plus</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Github</a></li>
+                    <li><a href="#">RSS</a></li>
+                </ul>
             </div>
         </div>
         <hr>
-        <p>&lt;/&gt; With <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> by <a href="#">D3vSt0rm</a></p>
+        <p>&lt;/&gt; With <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> by <a href="#">D3vSt0rm</a>
+        </p>
     </footer>
 </main>
 
@@ -205,8 +208,6 @@
     <!-- place project specific Javascript in this file -->
     <script src="{% static 'js/project.js' %}"></script>
 
-    <!-- AddThis plugin -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53579a8052432245"></script>
 
 {% endblock javascript %}
 </body>

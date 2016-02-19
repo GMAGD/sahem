@@ -136,8 +136,8 @@ footer {
 }
 
 .footer-links {
-  list-style: none;
-
+  margin: 0%;
+  list-style-type: none;
 }
 
 footer h4 {
@@ -148,7 +148,9 @@ footer h4 {
 footer li {
   text-align: left;
 }
-
+#cookieFooter{
+  margin-top: 5.5%;
+}
 #join-us-banner {
   background-color: #ccf21c;
   padding: 1%;
