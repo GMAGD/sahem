@@ -9,7 +9,7 @@
         function initialize() {
             var mapProp = {
                 center: new google.maps.LatLng({{ event.position.latitude }}, {{ event.position.longitude }}),
-                zoom: 8,
+                zoom: 15,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
@@ -35,7 +35,12 @@
 
             <div class="col-sm-8">
                 <h3>Manager : {{ event.owner }}</h3>
+
                 <h3>{{ event.name }}</h3>
+
+                <img src="{{ event.category.image.url }}" alt="{{ event.category.name }}" height="50">
+                <p>{{ event.category.name }}</p>
+
                 <h5>{{ event.start }} --> {{ event.end }}</h5>
                 <p>{{ event.description }}</p>
 
@@ -49,6 +54,20 @@
                     <p>{{ participant }}</p>
                 {% endfor %}
 
+                {% if event.available %}
+                    <p>This event is available</p>
+                {% else %}
+                    <p>This event is not available</p>
+                {% endif %}
+
+
+                {% if event.owner == request.user %}
+                    <a href="{% url 'events:update' event.id %}" class="btn btn-default">Update</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#remove-event-modal">
+                        Remove
+                    </button>
+                {% endif %}
 
             </div>
 
@@ -61,6 +80,26 @@
 
 
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="remove-event-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Remove Event</h4>
+                </div>
+                <div class="modal-body">
+                    Do you want to delete this event ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <a href="{% url 'events:delete' event.id %}" type="button" class="btn btn-primary">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}

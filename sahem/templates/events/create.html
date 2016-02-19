@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block title %}Create Event{% endblock %}
 {% block content %}
 
     {# Load the jquery to display the map #}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
-
-
-
+    
     <div class="container">
 
         {% if message %}
@@ -23,7 +23,7 @@
 
             <form action="" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form|crispy }}
                 {{ form.media }}
 
                 <button class="btn btn-default" type="submit">Create</button>

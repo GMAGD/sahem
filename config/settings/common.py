@@ -109,7 +109,7 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 
-# # Hosted Database
+# Hosted Database
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -249,10 +249,11 @@ ADMIN_URL = r'^admin/'
 
 
 # Geopostion API settings
-GEOPOSITION_MAP_OPTIONS = {
-    'minZoom': 3,
-    'maxZoom': 15,
-}
+
+# GEOPOSITION_MAP_OPTIONS = {
+#     'minZoom': 1,
+#     'maxZoom': 15,
+# }
 
 GEOPOSITION_MARKER_OPTIONS = {
     'cursor': 'move'
