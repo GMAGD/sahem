@@ -2,21 +2,28 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.utils import timezone
 from django.utils.datetime_safe import datetime
 from django.views.generic import UpdateView
 
 from .forms import EventForm
-from .models import Event
+from .models import Event, Category
 
 
-def list(request):
-    events = Event.objects.all()
+def list(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+
+    events = Event.objects.filter(available=True)
+
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        events = events.filter(category=category)
+
     return render(request, 'events/list.html', locals())
 
 
-def detail(request, id):
-    event = get_object_or_404(Event, pk=id)
+def detail(request, id, slug):
+    event = get_object_or_404(Event, pk=id, slug=slug)
 
     if event.end.day < datetime.now().day:
         event.available = False

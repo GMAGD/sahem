@@ -27,6 +27,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+    def get_absolute_url(self):
+        return reverse('events:event_list_by_category', args=[self.slug])
+
     def admin_image(self):
         return '<img src="%s" height=50>' % self.image.url
 
@@ -83,7 +87,7 @@ class Event(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('events:detail', kwargs={'id': self.id})
+        return reverse('events:detail', args=[self.id, self.slug])
 
     def admin_image(self):
         return '<img src="%s" height=50>' % self.category.image.url

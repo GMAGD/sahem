@@ -4,12 +4,51 @@
 
 
     <div class="container">
-        {% for event in events %}
-            <h1><a href="{{ event.get_absolute_url }}">{{ event.name }}</a></h1>
-        {% endfor %}
 
-        <a href="{% url 'events:create' %}" class="btn btn-default">Create Event</a>
+        <a id="create-event-btn" href="{% url 'events:create' %}" class="btn btn-default">Create Event</a>
 
+        <div class="row">
+            <div class="col-md-2">
+
+                <div class="list-group">
+                    <a href="{% url 'events:list' %}"
+                       class="list-group-item{% if not category %} active{% endif %}">All</a>
+                    {% for cat in categories %}
+                        <a href="{{ cat.get_absolute_url }}"
+                           class="list-group-item{% if cat == category %} active{% endif %}">{{ cat.name }}</a>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <div class="col-md-10">
+                {% for event in events %}
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <a href="{{ event.category.get_absolute_url }}">
+                                        <img class="media-object" src="{{ event.category.image.url }}" height="64">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="{{ event.get_absolute_url }}">{{ event.name }}</a>
+                                    </h4>
+                                    {{ event.description }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                {% endfor %}
+
+            </div>
+        </div>
     </div>
 
 {% endblock %}
