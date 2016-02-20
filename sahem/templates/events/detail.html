@@ -30,50 +30,66 @@
 
 
 
-    <div class="container" id="event-detail">
+    <div class="container cards-content" id="event-detail">
         <div class="row">
 
             <div class="col-sm-8">
-                <h3>Manager : {{ event.owner }}</h3>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>{{ event.name }}</h3>
+                        <p><img src="{{ event.category.image.url }}" alt="{{ event.category.name }}" height="30">
+                            {{ event.category.name }}</p>
 
-                <h3>{{ event.name }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h4>What ?</h4>
+                        <p>{{ event.description }}</p>
 
-                <img src="{{ event.category.image.url }}" alt="{{ event.category.name }}" height="50">
-                <p>{{ event.category.name }}</p>
+                        <h4>When ?</h4>
+                        <h5>{{ event.start }} --> {{ event.end }}</h5>
 
-                <h5>{{ event.start }} --> {{ event.end }}</h5>
-                <p>{{ event.description }}</p>
+                        <h4>Where ?</h4>
+                        <p>EVENT ADRESS Here</p>
+                        <h4>Who?</h4>
+                        <p>Manager : {{ event.owner }}</p>
+                        <p>Staffs : {{ event.get_staff_count }}</p>
+                        <ul class="list-unstyled">
+                            {% for staff in event.staff.all %}
+                                <li>{{ staff }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p>Participant : {{ event.get_participant_count }}</p>
+                        <p>
+                            {% for participant in event.participant.all %}
+                                {{ participant }},
 
-                <p>Staff : {{ event.get_staff_count }}</p>
-                {% for staff in event.staff.all %}
-                    <p>{{ staff }}</p>
-                {% endfor %}
+                            {% endfor %}
+                        </p>
 
-                <p>Participant : {{ event.get_participant_count }}</p>
-                {% for participant in event.participant.all %}
-                    <p>{{ participant }}</p>
-                {% endfor %}
-
-                {% if event.available %}
-                    <p>This event is available</p>
-                {% else %}
-                    <p>This event is not available</p>
-                {% endif %}
-
-
-                {% if event.owner == request.user %}
-                    <a href="{% url 'events:update' event.id %}" class="btn btn-default">Update</a>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#remove-event-modal">
-                        Remove
-                    </button>
-                {% endif %}
-
+                        <h4>What we need ?</h4>
+                    <p>LIST THEM HERE</p>
+                        {% if event.available %}
+                            <div class="bg-success">This event is available</div>
+                        {% else %}
+                            <div class="bg-danger">This event is not available</div>
+                        {% endif %}
+                    <!--Event Infos Ends-->
+                    {% if event.owner == request.user %}
+                        <hr>
+                            <a href="{% url 'events:update' event.id %}" class="btn btn-default">Update</a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-default" data-toggle="modal"
+                                    data-target="#remove-event-modal">
+                                Remove
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
 
 
             <div class="col-sm-4">
-                <div id="googleMap" style="width:500px;height:380px;"></div>
+                <div id="googleMap"></div>
             </div>
         </div>
     </div>

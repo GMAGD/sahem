@@ -52,6 +52,12 @@ body {
   background-color: #f0f0f0;
 }
 
+#googleMap{
+  width:500px;
+  height:380px;
+  border: solid whitesmoke 3px;
+  box-shadow: #0f0f0f 2px 2px 4px;
+}
 #headerTop {
   padding-top: 8%;
   padding-bottom: 12%;
@@ -102,16 +108,7 @@ main {
 }
 
 .cards-content {
-  background-color: white;
-  border-radius: 1%;
-  border: 1px solid #5e5e5e;
-  box-shadow: 1px 1px 2px #343434;
-  margin: 2%;
-}
-
-.cards-content h2, h3, p, li {
-  text-align: center;
-
+  margin: 1%;
 }
 
 .sub-card {
