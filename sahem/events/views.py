@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.datetime_safe import datetime
 from django.views.generic import UpdateView
+from django.utils.text import slugify
 
 from .forms import EventForm
 from .models import Event, Category
@@ -39,6 +40,8 @@ def create(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.owner = request.user
+            instance.slug = slugify(instance.name)
+
             instance.save()
 
             context = {
