@@ -1,7 +1,7 @@
-import unirest
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.datetime_safe import datetime
 from django.utils.text import slugify
@@ -35,6 +35,8 @@ def detail(request, id, slug):
 
 @login_required
 def create(request):
+    print request.POST
+
     if request.method == 'POST':
         form = EventForm(request.POST)
 
@@ -50,7 +52,8 @@ def create(request):
                 'flag': 'success',
             }
 
-            return render(request, 'events/create.html', context)
+            # return render(request, 'events/create.html', context)
+            return HttpResponse('<h1>Event Created</h1>')
 
         else:
             context = {
@@ -78,7 +81,7 @@ def delete(request, id):
 
 
 class EventUpdateView(LoginRequiredMixin, UpdateView):
-    fields = ['name', 'description', 'start', 'end', 'position', ]
+    fields = ['name', 'category', 'description', 'start', 'end', 'position', ]
     template_name = 'events/update.html'
     # we already imported User in the view code above, remember?
     model = Event

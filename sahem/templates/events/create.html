@@ -7,8 +7,8 @@
 
     {# Load the jquery to display the map #}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    
-    <div class="container">
+
+    <div id="create-form" class="container">
 
         {% if message %}
             <div class="alert alert-{{ flag }}">
@@ -22,15 +22,14 @@
         {% if form %}
 
             <form action="" method="post">
-                {% csrf_token %}
                 {{ form|crispy }}
                 {{ form.media }}
-
-                <button class="btn btn-default" type="submit">Create</button>
             </form>
+            <button id="create-event-btn" class="btn btn-default" type="submit">Create</button>
 
         {% endif %}
 
     </div>
+
 
 {% endblock %}

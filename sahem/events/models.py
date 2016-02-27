@@ -59,7 +59,7 @@ class Event(models.Model):
     start = models.DateTimeField(blank=False, null=False)
     end = models.DateTimeField(blank=False, null=False)
 
-    # Event geo postion latitude and longitude
+    # Event geo postion latitude and position_1
     position = GeopositionField()
 
     class Meta:

@@ -16,5 +16,6 @@ urlpatterns = [
     # Event create update and delete
     url(r'^create/$', views.create, name='create'),
     url(r'^delete/(?P<id>\d+)/$', views.delete, name='delete'),
-    url(r'^update/(?P<pk>\d+)/$', views.EventUpdateView.as_view(), name='update')
+    url(r'^update/(?P<pk>\d+)/$', views.EventUpdateView.as_view(), name='update'),
+
 ]
