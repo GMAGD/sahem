@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load staticfiles %}
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
@@ -18,9 +18,14 @@
             <div class="col-sm-4 col-xs-8 col-md-3 col-lg-3 cards-content pull-left text-center">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <img src="../../static/images/avatar.jpg" class="img-responsive img-circle img-thumbnail">
-                    <h3>{{ request.user }}</h3>
-                    <p>This is some text.</p>
+                        {% if request.user.image %}
+                            <img src="{{ request.user.image.url }}" class="img-responsive img-circle img-thumbnail">
+                        {% else %}
+                            <img src="{% static 'images/avatar.jpg' %}" class="img-responsive img-circle img-thumbnail">
+                        {% endif %}
+
+                        <h3>{{ request.user }}</h3>
+                        <p>This is some text.</p>
                     </div>
                     <div class="panel-footer">
                         <p><a href="#">Edit your profile</a></p>

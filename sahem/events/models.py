@@ -8,11 +8,6 @@ from sahem.users.models import User
 
 
 # Create your models here.
-
-
-# TODO create the Category class
-
-
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='category/%Y/%m/%d', blank=False)
@@ -26,7 +21,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
 
     def get_absolute_url(self):
         return reverse('events:event_list_by_category', args=[self.slug])

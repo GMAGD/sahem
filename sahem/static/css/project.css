@@ -101,7 +101,7 @@ body {
 #how-it-works, #who-we-are {
   font-size: 110%;
 }
-
+/*TODO download normalize.css*/
 main {
   margin: 0%;
   padding: 0%;
@@ -125,7 +125,7 @@ main {
 }
 
 footer {
-  margin-top: 2%;
+  margin-top: 10%;
   background-color: #e9fa9b;
   font-size: 120%;
   border-top: 1px solid lightgrey;
