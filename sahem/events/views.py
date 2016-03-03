@@ -81,7 +81,7 @@ def delete(request, id):
 
 
 class EventUpdateView(LoginRequiredMixin, UpdateView):
-    fields = ['name', 'category', 'description', 'start', 'end', 'position', ]
+    form_class = EventForm
     template_name = 'events/update.html'
     # we already imported User in the view code above, remember?
     model = Event

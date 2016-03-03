@@ -167,3 +167,7 @@ ul li {
 #create-event-btn {
   margin-bottom: 2%;
 }
+
+.form-control {
+  width: 50%;
+}
