@@ -7,11 +7,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from rest_framework import routers
+
+from sahem.events import views
+
+router = routers.DefaultRouter()
+router.register(r'events', views.EventViewSet)
 
 urlpatterns = [
                   url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name="home"),
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
-                  url(r'^privacy\-policy/$', TemplateView.as_view(template_name='pages/privacy_policy.html'), name="privacy_policy"),
+                  url(r'^privacy\-policy/$', TemplateView.as_view(template_name='pages/privacy_policy.html'),
+                      name="privacy_policy"),
 
                   # Django Admin, use {% url 'admin:index' %}
                   url(settings.ADMIN_URL, include(admin.site.urls)),
@@ -23,9 +30,8 @@ urlpatterns = [
                   # Your stuff: custom urls includes go here
                   url(r'^events/', include('sahem.events.urls', namespace='events')),
 
-                  # Robots.txt file
-                  # url(r'^robots\.txt$', direct_to_template,
-                  # {'template': 'robots.txt', 'mimetype': 'text/plain'}),
+                  # Api Endpoint
+                  url(r'^api/', include(router.urls)),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

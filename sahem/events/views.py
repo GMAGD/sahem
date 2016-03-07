@@ -7,6 +7,9 @@ from django.utils.datetime_safe import datetime
 from django.utils.text import slugify
 from django.views.generic import UpdateView
 
+from rest_framework import viewsets
+
+from sahem.events.serializers import EventSerializer
 from .forms import EventForm
 from .models import Event, Category
 
@@ -89,3 +92,7 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
     # send the user back to their own page after a successful update
     def get_success_url(self):
         return reverse("events:list")
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
