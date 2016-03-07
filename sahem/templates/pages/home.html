@@ -5,59 +5,56 @@
     <header id="headerTop" class="index-sections">
         <h1 class="text-center">Ready To change the world ?</h1>
         <p class="text-center">Join nonprofits, or organize your own event!</p>
-        <button onclick="window.location.replace('{% url 'account_login' %}')">Get started !</button>
+        <a class="waves-effect waves-light btn-large" href="{% url 'account_login' %}">Get Started</a>
     </header>
     <!-- How it works -->
-    <article>
-        <section class="container" id="how-it-works">
-            <div class="row index-sections">
-                <h1>How it works</h1>
-                <div class="col-sm-4">
-                    <img src="../../static/images/avatar.jpg" class="img-responsive img-circle" alt="##">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste libero officia sint velit! Ab
-                        accusantium aperiam atque beatae deleniti enim exercitationem, itaque laboriosam laudantium odio
-                        provident repudiandae, tempora veritatis voluptatibus?</p>
-                </div>
-                <div class="col-sm-4">
-                    <img src="../../static/images/avatar.jpg" class="img-responsive img-circle" alt="##">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste libero officia sint velit! Ab
-                        accusantium aperiam atque beatae deleniti enim exercitationem, itaque laboriosam laudantium odio
-                        provident repudiandae, tempora veritatis voluptatibus?</p>
-                </div>
-                <div class="col-sm-4">
-                    <img src="../../static/images/avatar.jpg" class="img-responsive img-circle" alt="##">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste libero officia sint velit! Ab
-                        accusantium aperiam atque beatae deleniti enim exercitationem, itaque laboriosam laudantium odio
-                        provident repudiandae, tempora veritatis voluptatibus?</p>
-                </div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col m9">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam autem cum ducimus eum explicabo
+                    fugit harum ipsum modi reprehenderit repudiandae sunt tenetur ullam, unde vel veniam voluptate?
+                    Possimus, soluta.</p>
             </div>
-        </section>
-        <!--Who we are -->
-        <section class="container index-sections" id="who-we-are">
-            <div class="row">
-                <h1>Who we are</h1>
-                <div class="col-sm-6 index-sections">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias beatae earum eligendi fugiat
-                        harum
-                        hic libero nam nisi repudiandae. Consequatur culpa ducimus ipsa itaque magnam nulla quo quod
-                        sint
-                        suscipit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusantium aliquam amet deserunt
-                        dicta earum eligendi error esse facere id, iure natus nisi nulla quas quidem repellat sit unde
-                        voluptates.</p>
-                </div>
-                <div class="col-sm-3 index-sections pull-right ">
-                    <img src="../../static/images/avatar.jpg" alt="" class="img-responsive">
-                </div>
+
+            <div class="col m3">
+                <img src="{% static 'images/avatar.jpg' %}" alt="">
             </div>
-        </section>
-        <!-- NEWS -->
-        <section></section>
-        <!-- Join US -->
-        <section class="text-center" id="join-us-banner">
-            <h3>The world needs you, hero !</h3>
-            <p><a href="#">Join us</a> and start making the change</p>
-        </section>
-    </article>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col m3">
+                <img src="{% static 'images/avatar.jpg' %}" alt="">
+            </div>
+
+            <div class="col m9">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam autem cum ducimus eum explicabo
+                    fugit harum ipsum modi reprehenderit repudiandae sunt tenetur ullam, unde vel veniam voluptate?
+                    Possimus, soluta.</p>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col m9">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam autem cum ducimus eum explicabo
+                    fugit harum ipsum modi reprehenderit repudiandae sunt tenetur ullam, unde vel veniam voluptate?
+                    Possimus, soluta.</p>
+            </div>
+
+            <div class="col m3">
+                <img src="{% static 'images/avatar.jpg' %}" alt="">
+            </div>
+
+        </div>
+    </div>
+
+
 
 {% endblock %}

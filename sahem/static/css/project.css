@@ -41,10 +41,10 @@ html {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
 }
-h1,h2,h3,h4,h5,h6{
+
+h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
-
 
 body {
   margin: 0px;
@@ -52,12 +52,12 @@ body {
   background-color: #f0f0f0;
 }
 
-#googleMap{
-  width:500px;
-  height:380px;
+#googleMap {
+  height: 380px;
   border: solid whitesmoke 3px;
-  box-shadow: #0f0f0f 2px 2px 4px;
+  margin: auto;
 }
+
 #headerTop {
   padding-top: 8%;
   padding-bottom: 12%;
@@ -81,7 +81,7 @@ body {
 }
 
 .index-sections h1 {
-  color: #ccf21c;
+  color: #c5c5c5;
   font-size: 290%;
   font-weight: bold;
   text-align: center;
@@ -89,7 +89,7 @@ body {
 }
 
 .index-sections button {
-  background: #ccf21c;
+  background: #1565c0;
   border: none;
   color: black;
   padding-left: 3%;
@@ -101,6 +101,7 @@ body {
 #how-it-works, #who-we-are {
   font-size: 110%;
 }
+
 /*TODO download normalize.css*/
 main {
   margin: 0%;
@@ -120,7 +121,7 @@ main {
 }
 
 .main-nav {
-  background-color: #ccf21c;
+  background-color: #1565c0;
   margin-bottom: 0%;
 }
 
@@ -145,11 +146,13 @@ footer h4 {
 footer li {
   text-align: left;
 }
-#cookieFooter{
+
+#cookieFooter {
   margin-top: 5.5%;
 }
+
 #join-us-banner {
-  background-color: #ccf21c;
+  background-color: #3669f2;
   padding: 1%;
   margin-top: 2%;
   maargin-bottom: 2%;
@@ -160,7 +163,7 @@ ul li {
   text-align: left;
 }
 
-.free-box{
+.free-box {
   margin: 1%;
 }
 
@@ -170,4 +173,39 @@ ul li {
 
 .form-control {
   width: 50%;
+}
+
+#event-list-img {
+  margin-top: 2%;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#sign-in-card {
+  width: 60%;
+  padding: 5%;
+  margin: auto;
+  margin-top: 3%;
+}
+
+
+#sign-in-button {
+  float: right;
+}
+
+#event-owner-image {
+
+}
+
+#event-owner-name {
+  text-align: left;
+  float: left;
 }

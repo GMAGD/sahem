@@ -43,3 +43,4 @@ redis>=2.10.0
 
 # Your custom requirements go here
 django-geoposition==0.2.2
+django-material==0.6.0

@@ -28,67 +28,93 @@
     </script>
 
 
-    
-    <div class="container cards-content" id="event-detail">
+
+    <div id="event-detail">
         <div class="row">
 
-            <div class="col-sm-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3>{{ event.name }}</h3>
-                        <p><img src="{{ event.category.image.url }}" alt="{{ event.category.name }}" height="30">
-                            {{ event.category.name }}</p>
-
-                    </div>
-                    <div class="panel-body">
-                        <h4>What ?</h4>
-                        <p>{{ event.description }}</p>
-
-                        <h4>When ?</h4>
-                        <h5>{{ event.start }} --> {{ event.end }}</h5>
-
-                        <h4>Where ?</h4>
-                        <p>EVENT ADRESS Here</p>
-                        <h4>Who?</h4>
-                        <p>Manager : {{ event.owner }}</p>
-                        <p>Staffs : {{ event.get_staff_count }}</p>
-                        <ul class="list-unstyled">
-                            {% for staff in event.staff.all %}
-                                <li>{{ staff }}</li>
-                            {% endfor %}
-                        </ul>
-                        <p>Participant : {{ event.get_participant_count }}</p>
-                        <p>
-                            {% for participant in event.participant.all %}
-                                {{ participant }},
-
-                            {% endfor %}
-                        </p>
-
-                        <h4>What we need ?</h4>
-                    <p>LIST THEM HERE</p>
-                        {% if event.available %}
-                            <div class="bg-success">This event is available</div>
-                        {% else %}
-                            <div class="bg-danger">This event is not available</div>
-                        {% endif %}
-                    <!--Event Infos Ends-->
-                    {% if event.owner == request.user %}
-                        <hr>
-                            <a href="{% url 'events:update' event.id %}" class="btn btn-default">Update</a>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-default" data-toggle="modal"
-                                    data-target="#remove-event-modal">
-                                Remove
-                            </button>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+            {#            <div class="col-sm-8">#}
+            {#                <div class="panel panel-default">#}
+            {#                    <div class="panel-heading">#}
+            {#                        <h3>{{ event.name }}</h3>#}
+            {#                        <p><img src="{{ event.category.image.url }}" alt="{{ event.category.name }}" height="30">#}
+            {#                            {{ event.category.name }}</p>#}
+            {##}
+            {#                    </div>#}
+            {#                    <div class="panel-body">#}
+            {#                        <h4>What ?</h4>#}
+            {#                        <p>{{ event.description }}</p>#}
+            {##}
+            {#                        <h4>When ?</h4>#}
+            {#                        <h5>{{ event.start }} --> {{ event.end }}</h5>#}
+            {##}
+            {#                        <h4>Where ?</h4>#}
+            {#                        <p>EVENT ADRESS Here</p>#}
+            {#                        <h4>Who?</h4>#}
+            {#                        <p>Manager : {{ event.owner }}</p>#}
+            {#                        <p>Staffs : {{ event.get_staff_count }}</p>#}
+            {#                        <ul class="list-unstyled">#}
+            {#                            {% for staff in event.staff.all %}#}
+            {#                                <li>{{ staff }}</li>#}
+            {#                            {% endfor %}#}
+            {#                        </ul>#}
+            {#                        <p>Participant : {{ event.get_participant_count }}</p>#}
+            {#                        <p>#}
+            {#                            {% for participant in event.participant.all %}#}
+            {#                                {{ participant }},#}
+            {##}
+            {#                            {% endfor %}#}
+            {#                        </p>#}
+            {##}
+            {#                        <h4>What we need ?</h4>#}
+            {#                    <p>LIST THEM HERE</p>#}
+            {#                        {% if event.available %}#}
+            {#                            <div class="bg-success">This event is available</div>#}
+            {#                        {% else %}#}
+            {#                            <div class="bg-danger">This event is not available</div>#}
+            {#                        {% endif %}#}
+            {#                    <!--Event Infos Ends-->#}
+            {#                    {% if event.owner == request.user %}#}
+            {#                        <hr>#}
+            {#                            <a href="{% url 'events:update' event.id %}" class="btn btn-default">Update</a>#}
+            {#                            <!-- Button trigger modal -->#}
+            {#                            <button type="button" class="btn btn-default" data-toggle="modal"#}
+            {#                                    data-target="#remove-event-modal">#}
+            {#                                Remove#}
+            {#                            </button>#}
+            {#                        {% endif %}#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
 
 
             <div class="col-sm-4">
-                <div id="googleMap"></div>
+
+                <div class="container">
+                    <div id="event-detail-map" class="card">
+                        <div class="avatar">
+                            <img src="{{ event.owner.image.url }}" alt="" class="circle" height="50">
+                            <span class="title">{{ event.owner.username }}</span>
+                        </div>
+
+                        <div class="card-image">
+                            <div id="googleMap"></div>
+                        </div>
+                        <div class="card-content">
+                            <h1>{{ event.name }}</h1>
+                        </div>
+                        <div class="card-action">
+
+                            {% if request.user == event.owner %}
+                                <a class="waves-effect waves-light btn"
+                                   href="{% url 'events:update' event.id %}">Update</a>
+                                <a class="waves-effect waves-light btn modal-trigger" href="#delete-modal">Delete</a>
+                            {% endif %}
+
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -96,25 +122,22 @@
 
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="remove-event-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Remove Event</h4>
-                </div>
-                <div class="modal-body">
-                    Do you want to delete this event ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <a href="{% url 'events:delete' event.id %}" type="button" class="btn btn-primary">Yes</a>
-                </div>
-            </div>
+    <!-- Modal Trigger -->
+
+
+    <!-- Modal Structure -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a class=" modal-action modal-close waves-effect waves-green btn-flat"
+               onclick="$('#delete-modal').closeModal();" href="{% url 'events:delete' event.id %}">Agree</a>
         </div>
     </div>
 
 
 {% endblock %}
+{% block footer %}{% endblock %}

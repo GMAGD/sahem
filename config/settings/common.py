@@ -20,6 +20,8 @@ env = environ.Env()
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 DJANGO_APPS = (
+    'material',
+    'material.admin',
     # Default Django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',

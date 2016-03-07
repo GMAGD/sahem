@@ -5,50 +5,43 @@
 
     <div class="container">
 
-        <a id="create-event-btn" href="{% url 'events:create' %}" class="btn btn-default">Create Event</a>
-
         <div class="row">
-            <div class="col-md-2">
+            <div class="col m2">
 
-                <div class="list-group">
+                <div class="collection ">
                     <a href="{% url 'events:list' %}"
-                       class="list-group-item{% if not category %} active{% endif %}">All</a>
+                       class="collection-item{% if not category %} active deep-purple accent-2 white-text{% else %} black-text {% endif %}">All</a>
                     {% for cat in categories %}
                         <a href="{{ cat.get_absolute_url }}"
-                           class="list-group-item{% if cat == category %} active{% endif %}">{{ cat.name }}</a>
+                           class="collection-item{% if cat == category %} active deep-purple accent-2 white-text {% else %} black-text {% endif %}">{{ cat.name }}</a>
                     {% endfor %}
                 </div>
 
             </div>
 
-            <div class="col-md-10">
-                {% for event in events %}
-                    <div class="panel panel-default">
-
-                        <div class="panel-heading">
-
-                            <div class="media">
-                                <div class="media-left media-middle">
-                                    <a href="{{ event.category.get_absolute_url }}">
-                                        <img class="media-object" src="{{ event.category.image.url }}" height="64">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        <a href="{{ event.get_absolute_url }}">{{ event.name }}</a>
-                                    </h4>
-                                    {{ event.description }}
-                                </div>
+            <div class="col m10">
+                <ul class="collapsible popout" data-collapsible="accordion">
+                    {% for event in events %}
+                        <li>
+                            <div class="collapsible-header">
+                                <img id="event-list-img" src="{{ event.category.image.url }}" class="circle"
+                                     height="48">
+                                <span><a href="{{ event.get_absolute_url }}">{{ event.name }}</a></span>
                             </div>
-                        </div>
-
-                    </div>
-
-
-                {% endfor %}
+                            <div class="collapsible-body"><p>{{ event.description }}</p></div>
+                        </li>
+                    {% endfor %}
+                </ul>
 
             </div>
         </div>
+    </div>
+
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large deep-purple accent-2" href="{% url 'events:create' %}">
+            <i class="material-icons">add</i>
+        </a>
     </div>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
+{% load material_form %}
 
 {% block title %}Create Event{% endblock %}
 {% block content %}
@@ -24,7 +25,7 @@
             {% if form %}
 
                 <form action="" method="post">
-                    {{ form|crispy }}
+                    {% form form=form %}{% endform %}
                     {{ form.media }}
                 </form>
                 <button id="create-event-btn" class="btn btn-default" type="submit">Create</button>
