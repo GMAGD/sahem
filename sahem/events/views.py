@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
@@ -5,13 +6,27 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.datetime_safe import datetime
 from django.utils.text import slugify
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import UpdateView
-
 from rest_framework import viewsets
+from rest_framework.parsers import JSONParser
+from rest_framework.renderers import JSONRenderer
 
-from sahem.events.serializers import EventSerializer
+from sahem.events.serializers import EventSerializer, UserSerializer, CategorySerializer
+from sahem.users.models import User
 from .forms import EventForm
 from .models import Event, Category
+
+
+class JSONResponse(HttpResponse):
+    """
+    An HttpResponse that renders its content into JSON.
+    """
+
+    def __init__(self, data, **kwargs):
+        content = JSONRenderer().render(data)
+        kwargs['content_type'] = 'application/json'
+        super(JSONResponse, self).__init__(content, **kwargs)
 
 
 def list(request, category_slug=None):
@@ -93,6 +108,65 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse("events:list")
 
+
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+@csrf_exempt
+def event_list(request):
+    if request.method == 'GET':
+        events = Event.objects.all()
+        serializer = EventSerializer(events, many=True)
+        return JSONResponse(serializer.data)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = EventSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JSONResponse(serializer.data, status=201)
+
+        else:
+            return JSONResponse(serializer.errors, status=400)
+
+
+@csrf_exempt
+def event_detail(request, pk):
+    """
+    Retrieve, update or delete a code event.
+    """
+    try:
+        event = Event.objects.get(pk=pk)
+    except Event.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = EventSerializer(event)
+        return JSONResponse(serializer.data)
+
+    elif request.method == 'PUT':
+
+        #  slugify the name before saving
+        request.POST['slug'] = slugify(request.POST['name'])
+
+        data = JSONParser().parse(request)
+        serializer = EventSerializer(event, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JSONResponse(serializer.data)
+        return JSONResponse(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        event.delete()
+        return HttpResponse(status=204)

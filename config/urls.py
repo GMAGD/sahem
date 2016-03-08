@@ -13,6 +13,8 @@ from sahem.events import views
 
 router = routers.DefaultRouter()
 router.register(r'events', views.EventViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'categories', views.CategoryViewSet)
 
 urlpatterns = [
                   url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name="home"),

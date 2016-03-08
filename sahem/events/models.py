@@ -31,6 +31,7 @@ class Category(models.Model):
     admin_image.short_description = 'icon'
     admin_image.allow_tags = True
 
+
 class Event(models.Model):
     # The event category
     category = models.ForeignKey(Category)
@@ -45,7 +46,7 @@ class Event(models.Model):
     participant = models.ManyToManyField(User, related_name='participants', blank=True)
 
     name = models.CharField(max_length=200, db_index=True, null=False, blank=False)
-    slug = models.SlugField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, blank=True)
     description = models.TextField(blank=True)
 
     # If the actual date is > event.end availabe = False
@@ -88,3 +89,10 @@ class Event(models.Model):
 
     admin_image.short_description = 'category icon'
     admin_image.allow_tags = True
+
+    def latitude(self):
+        return self.position.latitude
+
+    def longitude(self):
+        return self.position.longitude
+
