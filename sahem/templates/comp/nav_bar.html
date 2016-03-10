@@ -7,7 +7,7 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i
                         class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="#home">Home</a></li>
                     {% if request.user.is_authenticated %}
                         <li>
                             <a href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
@@ -23,8 +23,8 @@
                             <a href="{% url 'account_login' %}">{% trans "Log In" %}</a>
                         </li>
                     {% endif %}
-                    <li><a href="{% url 'events:list' %}">Events</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#about">About</a></li>
                     {% if request.user.is_superuser %}
                         <li><a href="/admin">Admin</a></li>
                     {% endif %}

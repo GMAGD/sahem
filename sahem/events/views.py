@@ -125,11 +125,16 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 @csrf_exempt
-def event_list(request):
+def event_list(request, category_slug=None):
     if request.method == 'GET':
-        events = Event.objects.all()
+
+        if category_slug:
+            events = Event.objects.filter(category__slug=category_slug)
+        else:
+            events = Event.objects.all()
         serializer = EventSerializer(events, many=True)
         return JSONResponse(serializer.data)
+
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = EventSerializer(data=data)

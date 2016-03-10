@@ -1,6 +1,6 @@
 {% load staticfiles i18n %}
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="sahemApp">
     <head>
         {% block meta %}
             <meta charset="utf-8">
@@ -30,17 +30,19 @@
         {% endblock %}
 
         {% block angular %}
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+            <script src="{% static 'bower_components/angular/angular.js' %}"></script>
+            <script src="{% static 'bower_components/angular-resource/angular-resource.js' %}"></script>
+            <script src="{% static 'bower_components/angular-route/angular-route.js' %}"></script>
+            <script src="{% static 'bower_components/angular-ui-router/release/angular-ui-router.js' %}"></script>
         {% endblock %}
 
     </head>
 
-    <body>
+    <body ng-controller="mainController">
 
         <!--Navigation start-->
         {% block navbar %}
             {% include 'comp/nav_bar.html' %}
-
         {% endblock %}
         <!--Navigation Ends-->
         <main>
@@ -52,7 +54,11 @@
             {% block content %}
             {% endblock content %}
 
+            <div ng-view></div>
+
         </main>
+
+
 
         {% block footer %}
             {% include 'comp/footer.html' %}
@@ -68,6 +74,7 @@
 
             {% include 'material/includes/material_css.html' %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+            <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
             {% include 'material/includes/material_js.html' %}
 
             <!-- Tether - a requirement for Bootstrap tooltips -->
@@ -80,6 +87,8 @@
             <!-- place project specific Javascript in this file -->
             <script src="{% static 'js/project.js' %}"></script>
 
+            <!-- Angular app-->
+            <script src="{% static 'js/app.js' %}"></script>
 
         {% endblock javascript %}
     </body>

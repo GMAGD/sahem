@@ -57,7 +57,7 @@ node_modules/
 
 # User-uploaded media
 #sahem/media/
-
+staticfiles/
 # Hitch directory
 tests/.hitch
 

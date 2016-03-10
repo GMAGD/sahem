@@ -1,0 +1,59 @@
+<div class="container">
+
+
+    <div class="row">
+        <div class="col m2">
+
+            <div class="collection">
+                <a class="collection-item" href="#events">All</a>
+                <a class="collection-item" ng-repeat="cat in categories" href="#events/[[ cat.slug ]]">[[ cat.name
+                    ]]</a>
+            </div>
+
+        </div>
+
+        <div class="col m10">
+            <ul class="collapsible popout" data-collapsible="accordion">
+
+                <li ng-repeat="event in events">
+                    <div class="collapsible-header">
+                        <img id="event-list-img" src="[[ event.category.image ]]" class="circle"
+                             height="48">
+                        <span><a href="">[[ event.name ]]</a></span>
+                    </div>
+                    <div class="collapsible-body"><p>[[ event.description ]]</p></div>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- Loader -->
+        <div class="col m10" ng-hide="events && categories">
+            <div id="event-loader" ng-hide="">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col m4"></div>
+    </div>
+</div>
+
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large deep-purple accent-2" href="/events/create">
+        <i class="material-icons">add</i>
+    </a>
+</div>
+
+

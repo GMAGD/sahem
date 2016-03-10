@@ -17,7 +17,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'categories', views.CategoryViewSet)
 
 urlpatterns = [
-                  url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name="home"),
+                  url(r'^$', TemplateView.as_view(template_name='base.html'), name="home"),
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
                   url(r'^privacy\-policy/$', TemplateView.as_view(template_name='pages/privacy_policy.html'),
                       name="privacy_policy"),
@@ -33,6 +33,7 @@ urlpatterns = [
                   url(r'^events/', include('sahem.events.urls', namespace='events')),
 
                   # Api Endpoint
+                  url(r'^api/events/(?P<category_slug>\w+)/$', views.event_list, name='event_by_category'),
                   url(r'^api/', include(router.urls)),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
