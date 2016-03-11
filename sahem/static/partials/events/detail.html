@@ -1,0 +1,55 @@
+<div id="event-detail">
+    <div class="row">
+
+
+        <div class="col-sm-4">
+
+            <div class="container">
+                <div id="event-detail-map" class="card">
+                    <div class="avatar">
+                        <img src="[[ event.owner.image ]]" alt="" class="circle" height="50">
+                        <span class="title">[[ event.owner.username ]]</span>
+                    </div>
+
+                    <div class="card-image">
+                        <div id="map"></div>
+                    </div>
+                    <div class="card-content">
+                        <h1>[[ event.name ]]</h1>
+                    </div>
+                    <div class="card-action">
+
+                        {% if request.user == event.owner %}
+                            <a class="waves-effect waves-light btn"
+                               href="{% url 'events:update' event.id %}">Update</a>
+                            <a class="waves-effect waves-light btn modal-trigger" href="#delete-modal">Delete</a>
+                        {% endif %}
+
+                        <a href="#">This is a link</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal Structure -->
+<div id="delete-modal" class="modal">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat"
+           onclick="$('#delete-modal').closeModal();" href="{% url 'events:delete' event.id %}">Agree</a>
+    </div>
+</div>
+
+
+
+

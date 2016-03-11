@@ -33,7 +33,7 @@ urlpatterns = [
                   url(r'^events/', include('sahem.events.urls', namespace='events')),
 
                   # Api Endpoint
-                  url(r'^api/events/(?P<category_slug>\w+)/$', views.event_list, name='event_by_category'),
+                  url(r'^api/events/category/(?P<category_slug>\w+)/$', views.event_list, name='event_by_category'),
                   url(r'^api/', include(router.urls)),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

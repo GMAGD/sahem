@@ -40,6 +40,10 @@ sahemApp.config(['$interpolateProvider', '$httpProvider', '$routeProvider', '$re
             templateUrl: 'static/partials/events/list.html',
             controller: 'eventCategoryController'
         })
+        .when('/event/:id', {
+            templateUrl: 'static/partials/events/detail.html',
+            controller: 'eventDetailController'
+        })
         .when('/about', {
             templateUrl: 'static/partials/pages/about.html',
             controller: 'aboutController'
@@ -72,7 +76,7 @@ sahemApp.controller('eventController', function ($scope, $http) {
 sahemApp.controller('eventCategoryController', function ($scope, $http, $routeParams) {
 
     // Get events by category
-    $http.get(baseUrl + '/api/events/' + $routeParams.catSlug).then(function (responce) {
+    $http.get(baseUrl + '/api/events/category/' + $routeParams.catSlug).then(function (responce) {
         $scope.events = responce.data;
     });
 
@@ -85,3 +89,27 @@ sahemApp.controller('eventCategoryController', function ($scope, $http, $routePa
 sahemApp.controller('aboutController', function ($scope, $location) {
 });
 
+sahemApp.controller('eventDetailController', function ($scope, $http, $routeParams) {
+
+    $scope.event = {};
+
+    $http.get(baseUrl + '/api/events/' + $routeParams.id + '/?format=json').then(function (responce) {
+        $scope.event = responce.data;
+
+        var mapOptions = {
+            zoom: 12,
+            center: new google.maps.LatLng($scope.event.latitude, $scope.event.longitude),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        var marker = new google.maps.Marker({
+            map: $scope.map,
+            position: new google.maps.LatLng($scope.event.latitude, $scope.event.longitude),
+            title: $scope.event.address
+        });
+
+    });
+
+});

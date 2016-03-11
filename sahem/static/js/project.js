@@ -35,6 +35,7 @@ $.ajaxSetup({
 $('#remove-event-modal').on('shown.bs.modal', function () {
     $('#remove-event-button').focus()
 });
+
 // Create Event
 $(document).ready(function () {
 

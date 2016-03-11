@@ -14,5 +14,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "lodash": "^4.6.1",
+    "angular-simple-logger": "^0.1.7"
+  }
 }

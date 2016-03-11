@@ -6,8 +6,7 @@
 
             <div class="collection">
                 <a class="collection-item" href="#events">All</a>
-                <a class="collection-item" ng-repeat="cat in categories" href="#events/[[ cat.slug ]]">[[ cat.name
-                    ]]</a>
+                <a class="collection-item" ng-repeat="cat in categories" href="#events/[[ cat.slug ]]">[[ cat.name]]</a>
             </div>
 
         </div>
@@ -19,7 +18,7 @@
                     <div class="collapsible-header">
                         <img id="event-list-img" src="[[ event.category.image ]]" class="circle"
                              height="48">
-                        <span><a href="">[[ event.name ]]</a></span>
+                        <span><a href="#/event/[[ event.id ]]">[[ event.name ]]</a></span>
                     </div>
                     <div class="collapsible-body"><p>[[ event.description ]]</p></div>
                 </li>
