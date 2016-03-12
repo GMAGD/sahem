@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.datetime_safe import datetime
 from django.utils.text import slugify
@@ -94,7 +94,12 @@ def create(request):
 @login_required
 def delete(request, id):
     event = get_object_or_404(Event, pk=id)
-    event.delete()
+
+    # check if the sender is the acctual owner of the event
+    if request.user == event.owner:
+        event.delete()
+    else:
+        raise Http404
     return redirect('events:list')
 
 
@@ -125,11 +130,13 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 @csrf_exempt
-def event_list(request, category_slug=None):
+def event_list(request, id=None, slug=None, category_slug=None):
     if request.method == 'GET':
 
         if category_slug:
             events = Event.objects.filter(category__slug=category_slug)
+        elif id and slug:
+            events = Event.objects.filter(id=id, slug=slug)
         else:
             events = Event.objects.all()
         serializer = EventSerializer(events, many=True)
@@ -175,3 +182,61 @@ def event_detail(request, pk):
     elif request.method == 'DELETE':
         event.delete()
         return HttpResponse(status=204)
+
+
+@csrf_exempt
+def join_event(request, event_id, staff_id=None, participant_id=None):
+    staff_ids = []
+    participant_ids = []
+
+    # get the acctual event from the database
+    try:
+        event = Event.objects.get(pk=event_id)
+    except Event.DoesNotExist:
+        return HttpResponse(status=404)
+
+    # get all staff ids
+    for i in event.staff.all():
+        staff_ids.append(i.id)
+
+    # get all participants ids
+    for i in event.participant.all():
+        participant_ids.append(i.id)
+
+    print '-------------------------------------'
+    print "staff ids : " + str(staff_ids)
+    print 'participant ids' + str(participant_ids)
+
+
+
+
+
+    # if it's a staff request
+    if staff_id:
+        try:
+            staff = User.objects.get(pk=staff_id)
+            # convert the staff id to an integer
+            staff_id = int(staff_id)
+            if staff_id not in staff_ids and staff_id not in participant_ids and staff != event.owner:
+                event.staff.add(staff)
+
+        except User.DoesNotExist:
+            return HttpResponse(status=404)
+
+    # if it's a participant request
+    elif participant_id:
+        try:
+            participant = User.objects.get(pk=participant_id)
+            # convert the participant id to an integer
+            participant_id = int(participant_id)
+
+            if participant_id not in participant_ids and participant_id not in staff_ids and participant != event.owner:
+                event.participant.add(participant)
+
+
+        except User.DoesNotExist:
+            return HttpResponse(status=404)
+
+    serializer = EventSerializer(event)
+
+    return JSONResponse(serializer.data)

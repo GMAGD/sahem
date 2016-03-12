@@ -1,4 +1,3 @@
-from django.utils.text import slugify
 from rest_framework import serializers
 
 from sahem.users.models import User
@@ -14,7 +13,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email', 'image')
+        fields = ('id', 'username', 'email', 'image')
 
 
 class EventSerializer(serializers.ModelSerializer):

@@ -7,12 +7,11 @@ var sahemApp = angular.module('sahemApp', ['ui.router', 'ngResource', 'ngRoute']
 var port = '8000';
 var baseUrl = 'http://localhost:' + port;
 
-sahemApp.config(['$interpolateProvider', '$httpProvider', '$routeProvider', '$resourceProvider', '$urlRouterProvider', function ($interpolateProvider, $httpProvider, $routeProvider, $resourceProvider, $urlRouterProvider) {
+sahemApp.config(['$interpolateProvider', '$httpProvider', '$routeProvider', '$resourceProvider', '$urlRouterProvider', '$locationProvider', function ($interpolateProvider, $httpProvider, $routeProvider, $resourceProvider, $urlRouterProvider, $locationProvider) {
 
     // Force angular to use square brackets for template tag
     // The alternative is using {% verbatim %}
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
-
     // CSRF Support
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -96,6 +95,27 @@ sahemApp.controller('eventDetailController', function ($scope, $http, $routePara
     $http.get(baseUrl + '/api/events/' + $routeParams.id + '/?format=json').then(function (responce) {
         $scope.event = responce.data;
 
+        // split the start date an time
+        var startDateTime = $scope.event.start.split('T');
+        // split the end date and time
+        var endDateTime = $scope.event.end.split('T');
+
+        $scope.event.start = {
+            date: startDateTime[0],
+            time: startDateTime[1]
+        };
+
+        $scope.event.end = {
+            date: endDateTime[0],
+            time: endDateTime[1]
+        };
+        console.log($scope.event);
+
+        // check if the acctual is user is the owner of the event
+        if ($scope.event.owner.username == username) {
+            $scope.isUser = true;
+        }
+
         var mapOptions = {
             zoom: 12,
             center: new google.maps.LatLng($scope.event.latitude, $scope.event.longitude),
@@ -110,6 +130,47 @@ sahemApp.controller('eventDetailController', function ($scope, $http, $routePara
             title: $scope.event.address
         });
 
+
+        $scope.joinEventAsStaff = function () {
+            $http.post(baseUrl + '/api/events/join/event/' + $scope.event.id + '/staff/' + userId + '/').then(function (responce) {
+                $scope.isStaff = true;
+                console.log(responce);
+            })
+        };
+        $scope.isStaff = isUserStaff(userId, $scope.event.staff);
+        console.log($scope.isStaff);
+
+
+        $scope.joinEventAsParticipant = function () {
+            $http.post(baseUrl + '/api/events/join/event/' + $scope.event.id + '/participant/' + userId + '/').then(function (responce) {
+                $scope.isParticipant = true;
+                console.log(responce);
+            })
+        };
+        $scope.isParticipant = isUserParticipant(userId, $scope.event.participant);
+        console.log($scope.isParticipant);
+
     });
 
+
 });
+
+
+function isUserStaff(staffId, staffs) {
+    for (var i = 0; i < staffs.length; i++) {
+        if (staffId == staffs[i].id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function isUserParticipant(participantId, participants) {
+    for (var i = 0; i < participants.length; i++) {
+        if (participantId == participants[i].id) {
+            return true;
+        }
+    }
+    return false;
+}

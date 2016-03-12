@@ -17,15 +17,52 @@
                     <div class="card-content">
                         <h1>[[ event.name ]]</h1>
                     </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                            <p>Start</p>
+                        </div>
+                        <div class="input-field col s6 required" style="margin-top:-7px">
+                            <i class="mdi-action-view-module prefix active"></i>
+                            <p style="margin-left: 35px">[[ event.start.date ]]</p>
+                        </div>
+                        <div class="input-field col s6" style="margin-top:-7px">
+
+                            <i class="mdi-action-query-builder prefix active"></i>
+                            <p style="margin-left: 35px">[[ event.start.time ]]</p>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <p>End</p>
+                        </div>
+                        <div class="input-field col s6 required" style="margin-top:-7px">
+                            <i class="mdi-action-view-module prefix active"></i>
+                            <p style="margin-left: 35px">[[ event.end.date ]]</p>
+                        </div>
+                        <div class="input-field col s6" style="margin-top:-7px">
+
+                            <i class="mdi-action-query-builder prefix active"></i>
+                            <p style="margin-left: 35px">[[ event.end.time ]]</p>
+
+                        </div>
+                    </div>
+
+
                     <div class="card-action">
-
-                        {% if request.user == event.owner %}
-                            <a class="waves-effect waves-light btn"
-                               href="{% url 'events:update' event.id %}">Update</a>
-                            <a class="waves-effect waves-light btn modal-trigger" href="#delete-modal">Delete</a>
-                        {% endif %}
-
-                        <a href="#">This is a link</a>
+                        <button class="waves-effect waves-light btn modal-trigger"
+                                onclick="$('#participate-modal').openModal()"
+                                ng-hide="isStaff || isParticipant || isUser">
+                            Participate
+                        </button>
+                        <a class="waves-effect waves-light btn"
+                           href="/events/update/[[ event.id ]]" ng-show="isUser">Update</a>
+                        <button class="red waves-effect waves-light btn modal-trigger" style="float: right"
+                                onclick="$('#delete-modal').openModal()" ng-show="isUser">Delete
+                        </button>
+                        <h6 ng-show="isStaff">Your staff a this event</h6>
+                        <h6 ng-show="isParticipant">Your participant a this event</h6>
                     </div>
                 </div>
             </div>
@@ -35,21 +72,33 @@
 </div>
 
 
-
-
 <!-- Modal Structure -->
 <div id="delete-modal" class="modal">
     <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h1>Confirmation</h1>
+        <h4>Do you want te delete this event ?</h4>
     </div>
     <div class="modal-footer">
         <a href="" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
         <a class=" modal-action modal-close waves-effect waves-green btn-flat"
-           onclick="$('#delete-modal').closeModal();" href="{% url 'events:delete' event.id %}">Agree</a>
+           onclick="$('#delete-modal').closeModal();" href="/events/delete/[[ event.id ]]">Agree</a>
     </div>
 </div>
 
+<!-- Modal Structure -->
+<div id="participate-modal" class="modal">
+    <div class="modal-content">
+        <h4>Join this event</h4>
+        <button class="waves-effect waves-light btn" ng-click="joinEventAsStaff()"
+                onclick="$('#participate-modal').closeModal()">Staff
+        </button>
+        <button class="waves-effect waves-light btn" ng-click="joinEventAsParticipant()"
+                onclick="$('#participate-modal').closeModal()">Participant
+        </button>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>
 
 
 

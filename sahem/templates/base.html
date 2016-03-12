@@ -37,6 +37,11 @@
 
     <body ng-controller="mainController">
 
+        <script>
+            var username = "{{ request.user }}";
+            var userId = "{{ request.user.id }}";
+        </script>
+
         <!--Navigation start-->
         {% block navbar %}
             {% include 'comp/nav_bar.html' %}
@@ -67,21 +72,6 @@
         ================================================== -->
         <!-- Placed at 1the end of the document so the pages load faster -->
         {% block javascript %}
-            <!-- Latest JQuery -->
-
-            {% include 'material/includes/material_css.html' %}
-            <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
-            {% include 'material/includes/material_js.html' %}
-
-            <!-- Tether - a requirement for Bootstrap tooltips -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
-
-            <!-- Compiled and minified JavaScript -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-            <!-- Your stuff: Third-party javascript libraries go here -->
-
-{#            <script src="http://maps.googleapis.com/maps/api/js"></script>#}
-
 
             <script src="{% static 'bower_components/angular/angular.js' %}"></script>
             <script src="{% static 'bower_components/angular-resource/angular-resource.js' %}"></script>
@@ -91,12 +81,22 @@
 
             <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
+            <!-- Latest JQuery -->
 
-            <!-- place project specific Javascript in this file -->
-            <script src="{% static 'js/project.js' %}"></script>
+            <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+
+            <!-- Tether - a requirement for Bootstrap tooltips -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
+
 
             <!-- Angular app-->
             <script src="{% static 'js/app.js' %}"></script>
+
+            <!-- Compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+            <!-- place project specific Javascript in this file -->
+            <script src="{% static 'js/project.js' %}"></script>
 
         {% endblock javascript %}
     </body>
