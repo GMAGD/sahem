@@ -116,14 +116,18 @@ sahemApp.controller('eventDetailController', function ($scope, $http, $routePara
             $scope.isUser = true;
         }
 
+        // Display the event into a Google maps using Google maps api
+        // setup the map options zoom default position
         var mapOptions = {
             zoom: 12,
             center: new google.maps.LatLng($scope.event.latitude, $scope.event.longitude),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
+        // get an instance of the google map
         $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+        // set a marker with the event lat and long
         var marker = new google.maps.Marker({
             map: $scope.map,
             position: new google.maps.LatLng($scope.event.latitude, $scope.event.longitude),
@@ -131,6 +135,7 @@ sahemApp.controller('eventDetailController', function ($scope, $http, $routePara
         });
 
 
+        // Join event as a staff
         $scope.joinEventAsStaff = function () {
             $http.post(baseUrl + '/api/events/join/event/' + $scope.event.id + '/staff/' + userId + '/').then(function (responce) {
                 $scope.isStaff = true;
@@ -140,7 +145,7 @@ sahemApp.controller('eventDetailController', function ($scope, $http, $routePara
         $scope.isStaff = isUserStaff(userId, $scope.event.staff);
         console.log($scope.isStaff);
 
-
+        // Join event as a participant
         $scope.joinEventAsParticipant = function () {
             $http.post(baseUrl + '/api/events/join/event/' + $scope.event.id + '/participant/' + userId + '/').then(function (responce) {
                 $scope.isParticipant = true;
@@ -149,6 +154,32 @@ sahemApp.controller('eventDetailController', function ($scope, $http, $routePara
         };
         $scope.isParticipant = isUserParticipant(userId, $scope.event.participant);
         console.log($scope.isParticipant);
+
+        // Leave Event
+        $scope.leaveEvent = function () {
+            var baseUrlApi = baseUrl + '/api/events/leave/event/' + $scope.event.id;
+
+            // if the acctual user is a staff a this event
+            if ($scope.isStaff) {
+
+                $http.post(baseUrlApi + '/staff/' + userId + '/').then(function (responce) {
+                    console.log(responce.data);
+                    $scope.isStaff = false;
+                    console.log('leaved the event');
+                });
+
+            } else if ($scope.isParticipant) {
+
+                $http.post(baseUrlApi + '/participant/' + userId + '/').then(function (responce) {
+                    console.log(responce.data);
+                    $scope.isParticipant = false;
+                    console.log('leaved the event');
+                });
+
+            }
+
+
+        };
 
     });
 

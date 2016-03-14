@@ -207,10 +207,6 @@ def join_event(request, event_id, staff_id=None, participant_id=None):
     print "staff ids : " + str(staff_ids)
     print 'participant ids' + str(participant_ids)
 
-
-
-
-
     # if it's a staff request
     if staff_id:
         try:
@@ -239,4 +235,24 @@ def join_event(request, event_id, staff_id=None, participant_id=None):
 
     serializer = EventSerializer(event)
 
+    return JSONResponse(serializer.data)
+
+
+@csrf_exempt
+def leave_event(request, event_id, staff_id=None, participant_id=None):
+    # get the event from the data base
+    try:
+        event = Event.objects.get(id=event_id)
+    except Event.DoesNotExist:
+        return HttpResponse(status=404)
+
+    # if the user was a staff a this event
+    if staff_id:
+        event.staff.remove(staff_id)
+    # else if he is a participant at this event
+    elif participant_id:
+        event.participant.remove(participant_id)
+
+    # get back the responce a serialized event data
+    serializer = EventSerializer(event)
     return JSONResponse(serializer.data)

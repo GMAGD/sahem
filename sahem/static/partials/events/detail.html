@@ -61,6 +61,7 @@
                         <button class="red waves-effect waves-light btn modal-trigger" style="float: right"
                                 onclick="$('#delete-modal').openModal()" ng-show="isUser">Delete
                         </button>
+                        <button class="waves-effect waves-light btn" ng-show="isStaff || isParticipant" ng-click="leaveEvent()">Leave event</button>
                         <h6 ng-show="isStaff">Your staff a this event</h6>
                         <h6 ng-show="isParticipant">Your participant a this event</h6>
                     </div>

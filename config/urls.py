@@ -38,6 +38,14 @@ urlpatterns = [
                   url(r'^api/events/join/event/(?P<event_id>\d+)/participant/(?P<participant_id>\d+)/$',
                       views.join_event,
                       name='join_event_as_participant'),
+
+                  # Leave event api
+                  url(r'^api/events/leave/event/(?P<event_id>\d+)/staff/(?P<staff_id>\d+)/$', views.leave_event,
+                      name='leave_event_as_staff'),
+                  url(r'^api/events/leave/event/(?P<event_id>\d+)/participant/(?P<participant_id>\d+)/$',
+                      views.leave_event,
+                      name='leave_event_as_participant'),
+
                   # Api Endpoint
                   url(r'^api/events/(?P<id>\d+)/(?P<slug>\w+)/$', views.event_list, name='event_by_id_slug'),
                   url(r'^api/events/category/(?P<category_slug>\w+)/$', views.event_list, name='event_by_category'),
