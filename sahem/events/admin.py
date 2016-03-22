@@ -1,7 +1,10 @@
 from django.contrib import admin
 
-from .models import Event, Category
+from .models import Event, Category, Comment
 
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['user']
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'admin_image']
@@ -14,5 +17,6 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ['name', ]
 
 
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Event, EventAdmin)

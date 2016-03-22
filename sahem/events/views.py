@@ -12,10 +12,12 @@ from rest_framework import viewsets
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 
-from sahem.events.serializers import EventSerializer, UserSerializer, CategorySerializer
+import json
+
+from sahem.events.serializers import EventSerializer, UserSerializer, CategorySerializer, CommentSerializer
 from sahem.users.models import User
 from .forms import EventForm
-from .models import Event, Category
+from .models import Event, Category, Comment
 
 
 class JSONResponse(HttpResponse):
@@ -127,6 +129,11 @@ class UserViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
 
 
 @csrf_exempt
@@ -255,4 +262,34 @@ def leave_event(request, event_id, staff_id=None, participant_id=None):
 
     # get back the responce a serialized event data
     serializer = EventSerializer(event)
+    return JSONResponse(serializer.data)
+
+
+@csrf_exempt
+def add_comment(request):
+
+    data =  json.loads(request.body)
+
+    print data['user_id']
+    print data['comment']
+
+    try:
+        event = Event.objects.get(id=data['event_id'])
+    except Event.DoesNotExist:
+        return HttpResponse(status=404)
+
+    try:
+        user = User.objects.get(id=data['user_id'])
+    except User.DoesNotExist:
+        return HttpResponse(status=404)
+
+    comment_obj = Comment.objects.create(user=user, content=data['comment'])
+    comment_obj.save()
+
+    event.comments.add(comment_obj)
+    event.save()
+
+
+    serializer = EventSerializer(event)
+
     return JSONResponse(serializer.data)

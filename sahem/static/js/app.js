@@ -181,9 +181,25 @@ sahemApp.controller('eventDetailController', function ($scope, $http, $routePara
 
         };
 
+
+        // Save comment
+        $scope.saveComment = function () {
+
+            var data = {
+                user_id: userId,
+                event_id: $scope.event.id,
+                comment: $scope.comment
+            };
+
+            $http.post('/api/comments/add/', data).then(function (responce) {
+                $scope.event.comments.push({
+                    user: $scope.event.owner,
+                    content : $scope.comment
+                });
+                console.log(responce);
+            });
+        }
     });
-
-
 });
 
 

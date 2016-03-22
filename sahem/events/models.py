@@ -7,6 +7,16 @@ from geoposition.fields import GeopositionField
 from sahem.users.models import User
 
 
+# Comment model
+class Comment(models.Model):
+    user = models.ForeignKey(User, related_name='comment_owner')
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
+
+
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
@@ -48,6 +58,9 @@ class Event(models.Model):
     name = models.CharField(max_length=200, db_index=True, null=False, blank=False)
     slug = models.SlugField(max_length=200, db_index=True, blank=True)
     description = models.TextField(blank=True)
+
+    # Event comments
+    comments = models.ManyToManyField(Comment)
 
     # If the actual date is > event.end availabe = False
     available = models.BooleanField(default=True)
@@ -95,4 +108,3 @@ class Event(models.Model):
 
     def longitude(self):
         return self.position.longitude
-

@@ -15,7 +15,7 @@ router = routers.DefaultRouter()
 router.register(r'events', views.EventViewSet)
 router.register(r'users', views.UserViewSet)
 router.register(r'categories', views.CategoryViewSet)
-
+router.register(r'comments', views.CommentViewSet)
 urlpatterns = [
                   url(r'^$', TemplateView.as_view(template_name='base.html'), name="home"),
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name="about"),
@@ -46,6 +46,8 @@ urlpatterns = [
                       views.leave_event,
                       name='leave_event_as_participant'),
 
+                  # Comments api
+                  url(r'^api/comments/add/$', views.add_comment, name='add_comment'),
                   # Api Endpoint
                   url(r'^api/events/(?P<id>\d+)/(?P<slug>\w+)/$', views.event_list, name='event_by_id_slug'),
                   url(r'^api/events/category/(?P<category_slug>\w+)/$', views.event_list, name='event_by_category'),

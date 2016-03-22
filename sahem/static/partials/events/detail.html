@@ -61,14 +61,46 @@
                         <button class="red waves-effect waves-light btn modal-trigger" style="float: right"
                                 onclick="$('#delete-modal').openModal()" ng-show="isUser">Delete
                         </button>
-                        <button class="waves-effect waves-light btn" ng-show="isStaff || isParticipant" ng-click="leaveEvent()">Leave event</button>
+                        <button class="waves-effect waves-light btn" ng-show="isStaff || isParticipant"
+                                ng-click="leaveEvent()">Leave event
+                        </button>
                         <h6 ng-show="isStaff">Your staff a this event</h6>
                         <h6 ng-show="isParticipant">Your participant a this event</h6>
                     </div>
                 </div>
+
+                <div id="comments">
+                    <div class="card">
+                        <div id="event-comment-form" class="row">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="textarea1" class="materialize-textarea" ng-model="comment"></textarea>
+                                        <label for="textarea1">Comment</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="btn" ng-click="saveComment()">Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" ng-repeat="comment in event.comments">
+                        <div class="avatar">
+                            <img src="[[ comment.user.image ]]" alt="" class="circle" height="50">
+                            <span class="title">[[ comment.user.username ]]</span>
+                        </div>
+                        <div class="cards-content">
+                            <p>[[ comment.content ]]</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
+
+
     </div>
 </div>
 
