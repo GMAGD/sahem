@@ -69,11 +69,10 @@ body {
   max-width: 100%;
   max-height: 100%;
   background-image: url(../images/friedman-disaster.jpeg);
-  background-size: 100%;
-  background-repeat: repeat;
+  background-size: cover;
   background-attachment: fixed;
   display: block;
-  margin: 0%;
+  margin: 0 0 2% 0;
 }
 
 .index-sections {
@@ -82,7 +81,7 @@ body {
 
 .index-sections h1 {
   color: #c5c5c5;
-  font-size: 290%;
+  font-size: 200%;
   font-weight: bold;
   text-align: center;
   padding-bottom: 1%;
@@ -229,4 +228,31 @@ h2 {
 #event-comment-form {
   margin-right: 150px;
   margin-left: 150px;
+}
+
+.dark-orange{
+  background-color: #FF9800;
+}
+
+.dark-gray{
+  background-color: #212121;
+}
+
+.index-icons{
+  display: block;
+  font-size:500%;
+  text-align: center;
+
+}
+
+#who-we-r{
+  font-size: 135%;
+  font-weight: 300;
+  margin: 3% 0 3% 0;
+  padding: 2% 0 2% 0;
+}
+
+#how-it-works{
+    margin: 3% 0 3% 0;
+  padding: 2% 0 2% 0;
 }

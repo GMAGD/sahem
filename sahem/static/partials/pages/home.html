@@ -1,61 +1,87 @@
+<style>
+    body {
+        background-color: white;
+    }
+</style>
 <header id="headerTop" class="index-sections">
-    <h1 class="text-center">Ready To change the world ?</h1>
-    <p class="text-center">Join nonprofits, or organize your own event!</p>
-    <a class="waves-effect waves-light btn-large" href="">Get Started</a>
+    <h1 class="center flow-text">Sahem, a vey social networking service</h1>
+    <p class="center">
+        Meet real life heroes, <br>
+        Join nonprofits, or organize your own event!</p>
+    <a class="waves-effect waves-light btn-large" href="">Be social, Get Started</a>
 </header>
 <!-- How it works -->
 
 <div class="container">
-
     <div class="row">
+        <div class="col s12">
 
-        <div class="col m9">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam autem cum ducimus eum explicabo
-                fugit harum ipsum modi reprehenderit repudiandae sunt tenetur ullam, unde vel veniam voluptate?
-                Possimus, soluta.</p>
+            <div id="who-we-r">
+                <h2 class="center">Who we are</h2>
+                <p>
+                    <strong>Sahem</strong>, is an open real social platform. <br>
+                    <em>Open</em> because it's for everyone ! And because the platform is <strong>open
+                    source</strong>!
+                    <br>
+                    <em>Social</em> because we're here to announce real life events, and find real
+                    volunteers. And do real things outside
+                </p>
+                <blockquote>
+                    <em>Sahem (سَاهمْ) means Share, Contribute and Join - <a
+                            href="http://www.almaany.com/en/dict/ar-en/%D8%B3%D8%A7%D9%87%D9%85/">Almaani
+                        dictionary</a></em>
+                </blockquote>
+                <p>
+                    We believe that everyone is a hero, and that he want to do something for the society
+                    he only need some help. <br>
+                    That's right, you're in the right place <a href="#">Join us</a>, hero.
+                </p>
+            </div>
         </div>
+        <div class="row" id="how-it-works">
+            <h2 class="center">How it works</h2>
+            <div class="col s4 ">
+                <i class="material-icons index-icons">announcement</i>
+                <h3 class="center">Announce</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deleniti dolor dolore dolorem ducimus
+                    expedita, fuga fugit ipsa maiores, minima minus modi molestiae mollitia neque numquam quibusdam
+                    quo
+                    ullam vero?</p>
+            </div>
+            <div class="col s4 ">
+                <i class="material-icons index-icons">location_on</i>
+                <h3 class="center">Find</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deleniti dolor dolore dolorem ducimus
+                    expedita, fuga fugit ipsa maiores, minima minus modi molestiae mollitia neque numquam quibusdam
+                    quo
+                    ullam vero?</p>
+            </div>
+            <div class="col s4 ">
+                <i class="material-icons index-icons">supervisor_account</i>
+                <h3 class="center">Volunteer</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deleniti dolor dolore dolorem ducimus
+                    expedita, fuga fugit ipsa maiores, minima minus modi molestiae mollitia neque numquam quibusdam
+                    quo
+                    ullam vero?</p>
+            </div>
 
-        <div class="col m3">
-            <img src="static/images/avatar.jpg" alt="">
         </div>
 
     </div>
 
-
     <div class="row">
+        <h2 class="center">What's going around ?</h2>
+        [[ message ]]
 
-        <div class="col m3">
-            <img src="static/images/avatar.jpg" alt="">
-        </div>
+        <ul>
+            <li ng-repeat="event in events">
+                <h1>[[ event.name ]]</h1>
+            </li>
+        </ul>
 
-        <div class="col m9">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam autem cum ducimus eum explicabo
-                fugit harum ipsum modi reprehenderit repudiandae sunt tenetur ullam, unde vel veniam voluptate?
-                Possimus, soluta.</p>
-        </div>
+
+        <!-- todo: Map, slider or a list ? -->
 
     </div>
 
-    <div class="row">
-
-        <div class="col m9">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam autem cum ducimus eum explicabo
-                fugit harum ipsum modi reprehenderit repudiandae sunt tenetur ullam, unde vel veniam voluptate?
-                Possimus, soluta.</p>
-        </div>
-
-        <div class="col m3">
-            <img src="static/images/avatar.jpg" alt="">
-        </div>
-
-    </div>
 </div>
-
-[[ message ]]
-
-<ul>
-    <li ng-repeat="event in events">
-        <h1>[[ event.name ]]</h1>
-    </li>
-</ul>
-
