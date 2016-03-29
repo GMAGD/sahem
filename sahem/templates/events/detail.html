@@ -27,96 +27,97 @@
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
-    <div id="event-detail">
+    <!-- ----------------------------------------------- -->
+    <div class="card event-page-elem">
+        {% if event.available %}
+            <div class="green">This event is available</div>
+        {% else %}
+            <div class="red">This event is not available</div>
+        {% endif %}
         <div class="row">
-
-            {#            <div class="col-sm-8">#}
-            {#                <div class="panel panel-default">#}
-            {#                    <div class="panel-heading">#}
-            {#                        <h3>{{ event.name }}</h3>#}
-            {#                        <p><img src="{{ event.category.image.url }}" alt="{{ event.category.name }}" height="30">#}
-            {#                            {{ event.category.name }}</p>#}
-            {##}
-            {#                    </div>#}
-            {#                    <div class="panel-body">#}
-            {#                        <h4>What ?</h4>#}
-            {#                        <p>{{ event.description }}</p>#}
-            {##}
-            {#                        <h4>When ?</h4>#}
-            {#                        <h5>{{ event.start }} --> {{ event.end }}</h5>#}
-            {##}
-            {#                        <h4>Where ?</h4>#}
-            {#                        <p>EVENT ADRESS Here</p>#}
-            {#                        <h4>Who?</h4>#}
-            {#                        <p>Manager : {{ event.owner }}</p>#}
-            {#                        <p>Staffs : {{ event.get_staff_count }}</p>#}
-            {#                        <ul class="list-unstyled">#}
-            {#                            {% for staff in event.staff.all %}#}
-            {#                                <li>{{ staff }}</li>#}
-            {#                            {% endfor %}#}
-            {#                        </ul>#}
-            {#                        <p>Participant : {{ event.get_participant_count }}</p>#}
-            {#                        <p>#}
-            {#                            {% for participant in event.participant.all %}#}
-            {#                                {{ participant }},#}
-            {##}
-            {#                            {% endfor %}#}
-            {#                        </p>#}
-            {##}
-            {#                        <h4>What we need ?</h4>#}
-            {#                    <p>LIST THEM HERE</p>#}
-            {#                        {% if event.available %}#}
-            {#                            <div class="bg-success">This event is available</div>#}
-            {#                        {% else %}#}
-            {#                            <div class="bg-danger">This event is not available</div>#}
-            {#                        {% endif %}#}
-            {#                    <!--Event Infos Ends-->#}
-            {#                    {% if event.owner == request.user %}#}
-            {#                        <hr>#}
-            {#                            <a href="{% url 'events:update' event.id %}" class="btn btn-default">Update</a>#}
-            {#                            <!-- Button trigger modal -->#}
-            {#                            <button type="button" class="btn btn-default" data-toggle="modal"#}
-            {#                                    data-target="#remove-event-modal">#}
-            {#                                Remove#}
-            {#                            </button>#}
-            {#                        {% endif %}#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-
-
-            <div class="col-sm-4">
-
-                <div class="container">
-                    <div id="event-detail-map" class="card">
-                        <div class="avatar">
-                            <img src="{{ event.owner.image.url }}" alt="" class="circle" height="50">
-                            <span class="title">{{ event.owner.username }}</span>
+            <div class="cards-content">
+                <div class="card-title">
+                    <div class="row">
+                        <div class="col s1">
+                            <img src="{{ event.category.image.url }}" alt="{{ event.category.name }}"
+                                 class="responsive-img circle">
                         </div>
+                        <div class="col s11">
+                            <p><strong>{{ event.name }}</strong><br>
+                                {{ event.category.name }} event, starts on {{ event.start }}</p>
 
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+                <div class="col s8">
+
+                    <h3>Event details</h3>
+                    <p class="flow-text">{{ event.description }}</p>
+
+                    <h3>Who's Going</h3>
+                    <p>Manager : {{ event.owner }}</p>
+                    <p>Staffs : {{ event.get_staff_count }}</p>
+                    <ul class="list-unstyled">
+                        {% for staff in event.staff.all %}
+                            <li>{{ staff }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p>Participant : {{ event.get_participant_count }}</p>
+                    <p>
+                        {% for participant in event.participant.all %}
+                            {{ participant }},
+                        {% endfor %}
+                    </p>
+                    <h3>What we need ?</h3>
+                    <p>list display here</p>
+
+                </div>
+
+                <!--Map -->
+                <div class="col s4">
+                    <div class="card">
                         <div class="card-image">
                             <div id="googleMap"></div>
                         </div>
                         <div class="card-content">
-                            <h1>{{ event.name }}</h1>
-                        </div>
-                        <div class="card-action">
+                            <h4>When ?</h4>
+                            <p><b>Start: </b>{{ event.start }} <br><b>Ends: </b>{{ event.end }}</p>
 
-                            {% if request.user == event.owner %}
-                                <a class="waves-effect waves-light btn"
-                                   href="{% url 'events:update' event.id %}">Update</a>
-                                <a class="waves-effect waves-light btn modal-trigger" href="#delete-modal">Delete</a>
-                            {% endif %}
-
-                            <a href="#">This is a link</a>
+                            <h4>Where ?</h4>
+                            <!--todo: event address -->
+                            <p>EVENT ADRESS Here</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+        {% if request.user == event.owner %}
+            <div class="card-action">
+                <a class="waves-effect waves-light btn"
+                   href="{% url 'events:update' event.id %}">Update</a>
+                <a class="waves-effect waves-light btn modal-trigger"
+                   href="#delete-modal">Delete</a>
+            </div>
+        {% endif %}
+
     </div>
 
+    <div class="card event-page-elem">
+
+        <div class="card-action">
+            <p>Share this !</p>
+
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <div class="addthis_native_toolbox"></div>
+            
+        </div>
+    </div>
+    <!-- ----------------------------------------------- -->
+
+    <!--
+
+    -->
 
 
 
@@ -136,6 +137,23 @@
         </div>
     </div>
 
-
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53579a8052432245"></script>
 {% endblock %}
 {% block footer %}{% endblock %}
+
+<!--todo: Ida matasa79hach gla3ha -->
+<div>
+    {#{% if event.owner == request.user %}
+                    <!--
+                        <div class="card-action">
+                            <a href="{% url 'events:update' event.id %}" class="btn btn-default">Update</a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-default" data-toggle="modal"
+                                    data-target="#remove-event-modal">
+                                Remove
+                            </button>
+                        </div>
+                        -->
+                    {% endif %}#}
+</div>

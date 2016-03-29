@@ -12,96 +12,100 @@
 
 {% endblock %}
 
-{% block content %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-4 col-xs-8 col-md-3 col-lg-3 cards-content pull-left text-center">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {% if request.user.image %}
-                            <img src="{{ request.user.image.url }}" class="img-responsive img-circle img-thumbnail">
-                        {% else %}
-                            <img src="{% static 'images/avatar.jpg' %}" class="img-responsive img-circle img-thumbnail">
-                        {% endif %}
+{% block css %}
+    {{ block.super }}
 
-                        <h3>{{ request.user }}</h3>
-                        <p>This is some text.</p>
-                    </div>
-                    <div class="panel-footer">
-                        <p><a href="#">Edit your profile</a></p>
-                    </div>
+    <!-- Get rid of spacing between content & footer in this page -->
+    <style>
+
+        footer.page-footer {
+            margin-top: 0 !important;
+        }
+
+        #dashbrd {
+            margin-bottom: 0;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="row" id="dashbrd">
+
+        <div class="col m4 l3 hide-on-small-only" style="background-color: #212121">
+            <div class="card center">
+                <div class="card-content ">
+                    {% if request.user.image %}
+                        <img src="{{ request.user.image.url }}" class="responsive-img circle">
+                    {% else %}
+                        <img src="{% static 'images/avatar.jpg' %}" class="responsive-img circle">
+                    {% endif %}
+
+                    <h3>{{ request.user }}</h3>
+                    <p>This is some text.</p>
+                </div>
+                <div class="card-action">
+                    <p><a href="#" class="deep-orange-text"><b>Edit your profile</b></a></p>
+                </div>
+            </div>
+
+            <div class="card center">
+                <div class="card-content">
+                    <!--todo: Make it dynamic -->
+                    <h3>My events<br> 55</h3>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-body text-center">
-                        <!--
-                        todo: Make it dynamic
-                                          -->
-                        <h3>My events<br> 55</h3>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-xs-4 pull-left">
-                                <p>Current: <strong>22</strong></p>
-                            </div>
-                            <div class="col-xs-4 pull-right">
-                                <p>Past: <strong>33</strong></p>
-                            </div>
+                <div class="card-action">
+                    <div class="row center">
+                        <div class="col m6 push-left">
+                            <p>Current: <strong>22</strong></p>
+                        </div>
+                        <div class="col m6 pull-right">
+                            <p>Past: <strong>33</strong></p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 cards-content">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3>Current</h3>
-                    </div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <h4>Awsome eventsEvent</h4>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid culpa delectus
-                                <p class="text-right">22/03/2016 to 23/04/2019</p>
-
-                            <li class="list-group-item">
-                                <h4>Awsome eventsEvent</h4>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid culpa delectus
-                                <p class="text-right">22/03/2016 to 23/04/2019</p></li>
-                        </ul>
-                    </div>
-                </div> <!--Current Card-->
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3>Upcoming events</h3>
-                    </div>
-                    <div class="panel-body">
-                        <!--If nothing-->
-                        <p class="text-center"><i>
-                            Nothing to show here. <br>
-                            You didn't engage in any event yet, are you <a href="#">Looking for a new challenge </a>?
-                        </i></p>
-                        <!--
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <h4>Awsome eventsEvent</h4>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid culpa delectus
-                                <p class="text-right">22/03/2016 to 23/04/2019</p>
-
-                            <li class="list-group-item">
-                                <h4>Awsome eventsEvent</h4>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid culpa delectus
-                                <p class="text-right">22/03/2016 to 23/04/2019</p></li>
-                        </ul>
-                        -->
-                    </div>
-                </div> <!--Current Card-->
-            </div>
-
-
         </div>
 
+        <!-- Main DASHCONTENT -->
+        <div class="col s12 m8 l9">
+
+            <!-- Current events -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Current events</div>
+                    <!-- todo: grap current events -->
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <!--If nothing-->
+                    <p class="center">
+                        <i>Nothing to show here. <br>
+                            You didn't engage in any event yet, are you <a href="#">Looking for a new
+                                challenge </a>?</i>
+                    </p>
+                </div>
+            </div>
+
+            <!-- upcoming events -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Upcoming events</div>
+                    <!-- todo: grap current events -->
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Latest comments</div>
+                    <!-- todo: Add some dynamic content here -->
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}
-
