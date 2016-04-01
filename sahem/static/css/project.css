@@ -230,42 +230,33 @@ h2 {
   margin-left: 150px;
 }
 
-.dark-orange{
+.dark-orange {
   background-color: #FF9800;
 }
 
-.dark-gray{
+.dark-gray {
   background-color: #212121;
 }
 
-.index-icons{
+.index-icons {
   display: block;
-  font-size:500%;
+  font-size: 500%;
   text-align: center;
 
 }
 
-#who-we-r{
+#who-we-r {
   font-size: 135%;
   font-weight: 300;
   margin: 3% 0 3% 0;
   padding: 2% 0 2% 0;
 }
 
-#how-it-works{
-    margin: 3% 0 3% 0;
+#how-it-works {
+  margin: 3% 0 3% 0;
   padding: 2% 0 2% 0;
 }
 
-.event-page-elem{
+.event-page-elem {
   margin: 2%;
-}
-
-.nav-mobile-top{
-  background-image: url(../images/orng-vector.jpg);
-  text-align: center;
-  color: black;
-  font-weight: 400;
-  min-height: 7vh;
-  border-bottom: groove 1px;
 }
