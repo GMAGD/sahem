@@ -1,6 +1,5 @@
 {% load staticfiles i18n %}
 
-<!-- Collapsible -->
 <nav class="dark-orange">
     <div class="nav-wrapper">
         <a href="{% url 'home' %}" class="brand-logo">Sahem</a>
@@ -28,6 +27,7 @@
                 <li><a href="/admin">Admin</a></li>
             {% endif %}
         </ul>
+    <!-- Mobile Nav START:-->
         <ul class="side-nav" id="mobile-demo">
             {% if request.user.is_authenticated %}
                 <li class="card cards-content center">
@@ -64,6 +64,6 @@
                 <li><a href="/admin">Admin</a></li>
             {% endif %}
         </ul>
-
+    <!-- Mobile Nav END:-->
     </div>
 </nav>
