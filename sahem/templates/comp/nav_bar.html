@@ -29,27 +29,40 @@
             {% endif %}
         </ul>
         <ul class="side-nav" id="mobile-demo">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                {% if request.user.is_authenticated %}
-                    <li>
-                        <a href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'account_login' %}">{% trans "Log In" %}</a>
-                    </li>
-                {% endif %}
-                <li><a href="#events">Events</a></li>
-                <li><a href="#about">About</a></li>
-                {% if request.user.is_superuser %}
-                    <li><a href="/admin">Admin</a></li>
-                {% endif %}
+            {% if request.user.is_authenticated %}
+                <li class="card cards-content center">
+                    {% if request.user.image %}
+                        <img src="{{ request.user.image.url }}" class="responsive-img circle">
+                    {% else %}
+                        <img src="{% static 'images/avatar.jpg' %}" class="responsive-img circle">
+                    {% endif %}
+
+                    <p class="flow-text black-text">
+                        <a href="{% url 'users:detail' request.user.username %}">{{ request.user }}</a>
+                    </p>
+                </li>
+                <div class="nav-divider"></div>
+            {% endif %}
+
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            {% if request.user.is_authenticated %}
+                <li>
+                    <a href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'account_login' %}">{% trans "Log In" %}</a>
+                </li>
+            {% endif %}
+            <div class="divider"></div>
+            <li><a href="#">Settings</a></li>
+            {% if request.user.is_superuser %}
+                <li><a href="/admin">Admin</a></li>
+            {% endif %}
         </ul>
 
     </div>

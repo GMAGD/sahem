@@ -260,3 +260,12 @@ h2 {
 .event-page-elem{
   margin: 2%;
 }
+
+.nav-mobile-top{
+  background-image: url(../images/orng-vector.jpg);
+  text-align: center;
+  color: black;
+  font-weight: 400;
+  min-height: 7vh;
+  border-bottom: groove 1px;
+}
