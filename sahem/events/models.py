@@ -60,7 +60,7 @@ class Event(models.Model):
     description = models.TextField(blank=True)
 
     # Event comments
-    comments = models.ManyToManyField(Comment)
+    comments = models.ManyToManyField(Comment, blank=True)
 
     # If the actual date is > event.end availabe = False
     available = models.BooleanField(default=True)

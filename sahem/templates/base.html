@@ -1,104 +1,104 @@
 {% load staticfiles i18n %}
 <!DOCTYPE html>
 <html lang="en" ng-app="sahemApp">
-    <head>
-        {% block meta %}
-            <meta charset="utf-8">
-            <meta http-equiv="x-ua-compatible" content="ie=edge">
-            <title>{% block title %}sahem{% endblock title %}</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta name="description" content="">
-            <meta name="author" content="">
+<head>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% block title %}sahem{% endblock title %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-        {% endblock %}
+    {% endblock %}
 
 
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
       <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-        {% block css %}
-            <!--Import Google Icon Font-->
-            <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block css %}
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-            <!-- Your stuff: Third-party css libraries go here -->
-            <link rel="stylesheet"
-                  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-            <!-- This file store project specific CSS -->
-            <link href="{% static 'css/project.css' %}" rel="stylesheet">
-        {% endblock %}
+        <!-- Your stuff: Third-party css libraries go here -->
+        {% include 'material/includes/material_css.html' %}
 
-        {% block angular %}
+        <!-- This file store project specific CSS -->
+        <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    {% endblock %}
 
-        {% endblock %}
+    {% block angular %}
 
-    </head>
+    {% endblock %}
 
-    <body ng-controller="mainController">
+</head>
 
-        <script>
-            var username = "{{ request.user }}";
-            var userId = "{{ request.user.id }}";
-        </script>
+<body ng-controller="mainController">
 
-        <!--Navigation start-->
-        {% block navbar %}
-            {% include 'comp/nav_bar.html' %}
-        {% endblock %}
-        <!--Navigation Ends-->
-        <main>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-            {% block content %}
-            {% endblock content %}
+<script>
+    var username = "{{ request.user }}";
+    var userId = "{{ request.user.id }}";
+</script>
 
-            <div ng-view></div>
+<!--Navigation start-->
+{% block navbar %}
+    {% include 'comp/nav_bar.html' %}
+{% endblock %}
+<!--Navigation Ends-->
+<main>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
 
-        </main>
+    <div ng-view></div>
 
-
-
-        {% block footer %}
-            {% include 'comp/footer.html' %}
-        {% endblock %}
-
-        {% block modal %}{% endblock modal %}
-
-        <!-- Le javascript
-        ================================================== -->
-        <!-- Placed at 1the end of the document so the pages load faster -->
-        {% block javascript %}
-
-            <script src="{% static 'bower_components/angular/angular.js' %}"></script>
-            <script src="{% static 'bower_components/angular-resource/angular-resource.js' %}"></script>
-            <script src="{% static 'bower_components/angular-route/angular-route.js' %}"></script>
-            <script src="{% static 'bower_components/angular-ui-router/release/angular-ui-router.js' %}"></script>
+</main>
 
 
-            <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
-            <!-- Latest JQuery -->
+{% block footer %}
+    {% include 'comp/footer.html' %}
+{% endblock %}
 
-            <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+{% block modal %}{% endblock modal %}
 
-            <!-- Tether - a requirement for Bootstrap tooltips -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
+<!-- Le javascript
+================================================== -->
+<!-- Placed at 1the end of the document so the pages load faster -->
+{% block javascript %}
+
+    <script src="{% static 'bower_components/angular/angular.js' %}"></script>
+    <script src="{% static 'bower_components/angular-resource/angular-resource.js' %}"></script>
+    <script src="{% static 'bower_components/angular-route/angular-route.js' %}"></script>
+    <script src="{% static 'bower_components/angular-ui-router/release/angular-ui-router.js' %}"></script>
 
 
-            <!-- Angular app-->
-            <script src="{% static 'js/app.js' %}"></script>
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
-            <!-- Compiled and minified JavaScript -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <!-- Latest JQuery -->
 
-            <!-- place project specific Javascript in this file -->
-            <script src="{% static 'js/project.js' %}"></script>
+    <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
 
-        {% endblock javascript %}
-    </body>
+    <!-- Tether - a requirement for Bootstrap tooltips -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
+
+
+    <!-- Angular app-->
+    <script src="{% static 'js/app.js' %}"></script>
+
+
+    {% include 'material/includes/material_js.html' %}
+
+    <!-- place project specific Javascript in this file -->
+    <script src="{% static 'js/project.js' %}"></script>
+
+{% endblock javascript %}
+</body>
 </html>
 

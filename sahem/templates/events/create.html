@@ -14,10 +14,10 @@
         <div id="create-form" class="container">
 
             {% if message %}
-                <div class="alert alert-{{ flag }}">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>{{ message }}</strong>
-                </div>
+{#                <div class="alert alert-{{ flag }}">#}
+{#                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>#}
+{#                    <strong>{{ message }}</strong>#}
+{#                </div>#}
             {% endif %}
 
 
@@ -27,10 +27,12 @@
                     {% if form %}
 
                         <form action="" method="post">
+                            {% csrf_token %}
                             {% form form=form %}{% endform %}
                             {{ form.media }}
+                            <button class="btn btn-default" type="submit">Create</button>
                         </form>
-                        <button id="create-event-btn" class="btn btn-default" type="submit">Create</button>
+
 
                     {% endif %}
                 </div>

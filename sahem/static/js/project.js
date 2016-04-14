@@ -37,41 +37,41 @@ $('#remove-event-modal').on('shown.bs.modal', function () {
 });
 
 // Create Event
-$(document).ready(function () {
+// $(document).ready(function () {
+//
+//     $('#create-event-btn').click(createEvent)
+//
+// });
 
-    $('#create-event-btn').click(createEvent)
-
-});
-
-function createEvent() {
-
-
-    $name = $('#id_name').val();
-    $category = $('#id_category').val();
-    $description = $('#id_description').val();
-    $start = $("#id_start").val();
-    $end = $("#id_end").val();
-    $lattitude = $("#id_position_0").val();
-    $longitude = $("#id_position_1").val();
-
-    $.post('/events/create/',
-        {
-            name: $name,
-            category: $category,
-            description: $description,
-            start: $start,
-            end: $end,
-            position_0: $lattitude,
-            position_1: $longitude
-        },
-        function (data, status) {
-            console.log(data);
-            console.log(status);
-
-            $("#create-form").html(data);
-
-        });
-}
+// function createEvent() {
+//
+//
+//     $name = $('#id_name').val();
+//     $category = $('#id_category').val();
+//     $description = $('#id_description').val();
+//     $start = $("#id_start").val();
+//     $end = $("#id_end").val();
+//     $lattitude = $("#id_position_0").val();
+//     $longitude = $("#id_position_1").val();
+//
+//     $.post('/events/create/',
+//         {
+//             name: $name,
+//             category: $category,
+//             description: $description,
+//             start: $start,
+//             end: $end,
+//             position_0: $lattitude,
+//             position_1: $longitude
+//         },
+//         function (data, status) {
+//             console.log(data);
+//             console.log(status);
+//
+//             $("#create-form").html(data);
+//
+//         });
+// }
 
 $(document).ready(function () {
     $(".button-collapse").sideNav();
