@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block title %}User: {{ object.username }}{% endblock %}
+{% block title %}User: {{ user.username }}{% endblock %}
 
 {% block meta %}
     {{ block.super }}
@@ -51,16 +51,19 @@
             <div class="card center">
                 <div class="card-content">
                     <!--todo: Make it dynamic -->
-                    <h3>My events<br> 55</h3>
+                    <h3>My events<br> {{ events_count }}</h3>
                 </div>
 
                 <div class="card-action">
                     <div class="row center">
-                        <div class="col m6 push-left">
-                            <p>Current: <strong>22</strong></p>
+                        <div class="col m4">
+                            Current: <strong>{{ current_count }}</strong>
                         </div>
-                        <div class="col m6 pull-right">
-                            <p>Past: <strong>33</strong></p>
+                        <div class="col m4">
+                            Upcoming: <strong>{{ upcoming_count }}</strong>
+                        </div>
+                        <div class="col m4">
+                            Past: <strong>{{ finished_count }}</strong>
                         </div>
                     </div>
                 </div>
@@ -70,20 +73,62 @@
         <!-- Main DASHCONTENT -->
         <div class="col s12 m8 l9">
 
+            <!-- Your events events -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-title">Your events</div>
+                    <!-- todo: grap current events -->
+                    {% if owner_events %}
+                        <ul class="collapsible popout" data-collapsible="accordion">
+                            {% for event in owner_events %}
+                                <li>
+                                    <div class="collapsible-header">
+                                        <img id="event-list-img" src="{{ event.category.image.url }}" class="circle"
+                                             height="48">
+                                        <span><a href="{{ event.get_absolute_url }}">{{ event.name }}</a></span>
+                                    </div>
+                                    <div class="collapsible-body"><p>{{ event.description }}</p></div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <!--If nothing-->
+                        <p class="center">
+                            <i>Nothing to show here. <br>
+                                You didn't create in any event yet, are you <a href="#">Looking for a new
+                                    challenge </a>?</i>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+
+
             <!-- Current events -->
             <div class="card">
                 <div class="card-content">
                     <div class="card-title">Current events</div>
                     <!-- todo: grap current events -->
-                    <ul>
-                        <li></li>
-                    </ul>
-                    <!--If nothing-->
-                    <p class="center">
-                        <i>Nothing to show here. <br>
-                            You didn't engage in any event yet, are you <a href="#">Looking for a new
-                                challenge </a>?</i>
-                    </p>
+                    {% if current_events %}
+                        <ul class="collapsible popout" data-collapsible="accordion">
+                            {% for event in current_events %}
+                                <li>
+                                    <div class="collapsible-header">
+                                        <img id="event-list-img" src="{{ event.category.image.url }}" class="circle"
+                                             height="48">
+                                        <span><a href="{{ event.get_absolute_url }}">{{ event.name }}</a></span>
+                                    </div>
+                                    <div class="collapsible-body"><p>{{ event.description }}</p></div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <!--If nothing-->
+                        <p class="center">
+                            <i>Nothing to show here. <br>
+                                You didn't engage in any event yet, are you <a href="#">Looking for a new
+                                    challenge </a>?</i>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
 
@@ -93,7 +138,9 @@
                     <div class="card-title">Upcoming events</div>
                     <!-- todo: grap current events -->
                     <ul>
-                        <li></li>
+                        {% for event in upcoming_events %}
+                            <li>{{ event.name }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -103,6 +150,10 @@
                     <div class="card-title">Latest comments</div>
                     <!-- todo: Add some dynamic content here -->
                     <ul>
+                        {% for comment in comments %}
+                            <li>{{ comment.content }}</li>
+                        {% endfor %}
+
                         <li></li>
                     </ul>
                 </div>

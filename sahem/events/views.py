@@ -73,7 +73,7 @@ def create(request):
             }
 
             # return render(request, 'events/create.html', context)
-            return HttpResponse('<h1>Event Created</h1>')
+            return redirect('/#/events')
 
         else:
             context = {
